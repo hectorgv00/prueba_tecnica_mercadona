@@ -28,16 +28,19 @@ export class LoginModalComponent {
     username: new FormControl('', Validators.required),
   });
 
+  cancelButtonOptions: iButtonOptions = {
+    class: 'secondary',
+    text: 'cerrar',
+    disabled: false,
+    onClick: () => {},
+  };
+
   submitButtonOptions: iButtonOptions = {
     class: 'primary',
     text: 'Iniciar sesión',
-    disabled: false,
-    onClick: () => this.submitForm(),
+    disabled: true,
+    onClick: () => {},
   };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
-
-  submitForm() {
-    console.log(this.loginForm.value);
-  }
 }

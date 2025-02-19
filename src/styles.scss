@@ -1,3 +1,5 @@
+@use "@angular/material" as mat;
+
 :root {
   --primary-color: #3a7e45;
   --secondary-color: #51565a;
@@ -9,6 +11,9 @@
 
   --mercadona-typografy-color: #383d41;
   --typografy-color: #222529;
+  --label-typografy-color: #666b6e;
+
+  --input-border-color: #e5e5e5;
 
   --primary-font: "Roboto", sans-serif;
 
@@ -16,6 +21,21 @@
   --semiBold: 500;
   --regular: 400;
   --light: 300;
+
+  @include mat.dialog-overrides(
+    (
+      container-shape: 0px,
+      container-color: var(--white),
+    )
+  );
+
+  @include mat.form-field-overrides(
+    (
+      outlined-container-shape: 0px,
+      outlined-focus-outline-color: var(--input-border-color),
+      outlined-outline-color: var(--input-border-color),
+    )
+  );
 }
 
 * {
@@ -29,4 +49,16 @@
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.label-and-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+
+  > label {
+    font-weight: var(--semiBold);
+    color: var(--label-typografy-color);
+  }
 }

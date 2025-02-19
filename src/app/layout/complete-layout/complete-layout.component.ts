@@ -62,6 +62,9 @@ export class CompleteLayoutComponent {
   }
 
   public openDialog() {
-    this.dialog.open(LoginModalComponent);
+    const dialog = this.dialog.open(LoginModalComponent);
+    dialog.afterClosed().subscribe((result) => {
+      console.log(result);
+    });
   }
 }
