@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { CompleteLayoutComponent } from './layout/complete-layout/complete-layout.component';
 import { LoginService } from './services/login.service';
 import { iLoginInformation } from './interfaces/iLoginInformation';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CompleteLayoutComponent],
+  imports: [RouterOutlet, CompleteLayoutComponent, MatDialogModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [LoginService],

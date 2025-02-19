@@ -1,0 +1,13 @@
+<p mat-dialog-title>Inicia sesión</p>
+<mat-dialog-content>
+  <form [formGroup]="loginForm">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Introduce tu usuario"
+        formControlName="username"
+      />
+    </mat-form-field>
+    <app-button [buttonOptions]="submitButtonOptions"></app-button>
+  </form>
+</mat-dialog-content>

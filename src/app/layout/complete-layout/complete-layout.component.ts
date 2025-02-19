@@ -4,6 +4,8 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { LoginService } from '../../services/login.service';
 import { iLoginInformation } from '../../interfaces/iLoginInformation';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginModalComponent } from '../../modal/login-modal/login-modal.component';
 
 @Component({
   selector: 'app-complete-layout',
@@ -16,7 +18,7 @@ export class CompleteLayoutComponent {
 
   public buttonOptionsLogin: iButtonOptions = {
     text: 'Iniciar sesión',
-    onClick: () => this.handleLogin(),
+    onClick: () => this.openDialog(),
     class: 'secondary',
     disabled: false,
   };
@@ -29,7 +31,7 @@ export class CompleteLayoutComponent {
     icon: 'logout',
   };
 
-  constructor(private loginSE: LoginService) {}
+  constructor(private loginSE: LoginService, private dialog: MatDialog) {}
 
   ngOnInit() {
     // We establish the connexion with the behavior subject of the service that handles the information of the user's session
@@ -57,5 +59,9 @@ export class CompleteLayoutComponent {
 
     // We simulate the login process
     this.loginSE.handleLogin(fakeData);
+  }
+
+  public openDialog() {
+    this.dialog.open(LoginModalComponent);
   }
 }
