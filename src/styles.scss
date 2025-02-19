@@ -36,6 +36,15 @@
       outlined-outline-color: var(--input-border-color),
     )
   );
+  @include mat.table-overrides(
+    (
+      background-color: var(--white),
+      header-headline-color: var(--typografy-color),
+      header-headline-font: "Arial, sans-serif",
+      header-headline-size: 16px,
+      header-headline-weight: var(--semiBold),
+    )
+  );
 }
 
 * {
@@ -72,4 +81,24 @@ a {
     font-weight: var(--semiBold);
     color: var(--label-typografy-color);
   }
+}
+
+table {
+  width: 100%;
+  overflow: hidden;
+}
+
+tbody {
+  padding-top: 1rem;
+  display: block;
+  max-height: 60dvh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
