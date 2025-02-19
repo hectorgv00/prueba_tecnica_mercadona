@@ -11,7 +11,7 @@ import { LoginModalService } from '../../services/loginModal.service';
   imports: [NgOptimizedImage, ButtonComponent],
   templateUrl: './complete-layout.component.html',
   styleUrl: './complete-layout.component.scss',
-  providers: [LoginService, LoginModalService],
+  providers: [LoginModalService],
 })
 export class CompleteLayoutComponent {
   isLogged: boolean = false;
