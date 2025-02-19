@@ -1,6 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 import { iLoginInformation } from '../interfaces/iLoginInformation';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,6 +16,8 @@ export class LoginService {
       username: '',
       hasTokenAndUsername: false,
     });
+
+  constructor(private router: Router) {}
 
   // We create an observable to subscribe to the behavior subject
   get loginInformation() {
@@ -41,10 +44,12 @@ export class LoginService {
       username: '',
       hasTokenAndUsername: false,
     });
+    this.router.navigate(['/']);
   }
 
   // Function that handles the login process, if the user has a token and a username, we log in, otherwise we log out
   public handleLogin(loginInformation: iLoginInformation) {
+    console.log(loginInformation);
     if (loginInformation.hasTokenAndUsername) {
       this.login(loginInformation.username);
     } else {
@@ -53,6 +58,25 @@ export class LoginService {
   }
 
   public isUserLogged(): boolean {
-    return this._loginInformation.getValue().hasTokenAndUsername;
+    const isLoggedInMemory =
+      this._loginInformation.getValue().hasTokenAndUsername;
+
+    if (isLoggedInMemory) {
+      return true;
+    } else {
+      const token = localStorage.getItem('mercadona_token');
+      const username = localStorage.getItem('mercadona_username');
+
+      if (token && username) {
+        this._loginInformation.next({
+          hasToken: true,
+          username,
+          hasTokenAndUsername: true,
+        });
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 }
