@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CompleteLayoutComponent } from './layout/complete-layout/complete-layout.component';
 import { LoginService } from './services/login.service';
+import { iLoginInformation } from './interfaces/iLoginInformation';
 
 @Component({
   selector: 'app-root',
@@ -16,20 +17,28 @@ export class AppComponent {
   constructor(private loginSE: LoginService) {}
 
   ngOnInit() {
-    const isLogged = this.checkLogin();
-    this.handleLogged(isLogged);
+    // We check if the user is logged in
+    const loginInformation: iLoginInformation = this.checkLoginInformation();
+
+    // We handle the login status
+    this.loginSE.handleLogin(loginInformation);
   }
 
-  private checkLogin() {
-    const token = localStorage.getItem('mercadona_token');
-    return token && token == 'tenemos_token' ? true : false;
-  }
+  private checkLoginInformation() {
+    // We check if the user has a token and username in the local storage
+    const token: string | null = localStorage.getItem('mercadona_token');
+    const username: string | null = localStorage.getItem('mercadona_username');
+    const hasToken: boolean = token && token === 'tenemos_token' ? true : false;
+    const hasTokenAndUsername = hasToken && username ? true : false;
 
-  private handleLogged(isLogged: boolean) {
-    if (isLogged) {
-      this.loginSE.login();
-    } else {
-      this.loginSE.logout();
-    }
+    // We create an object with the login information
+    const loginInformation: iLoginInformation = {
+      hasToken,
+      username: username || '',
+      hasTokenAndUsername,
+    };
+
+    // We return the login information
+    return loginInformation;
   }
 }
