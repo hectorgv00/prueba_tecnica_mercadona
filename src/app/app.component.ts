@@ -31,8 +31,6 @@ export class AppComponent {
     const hasToken: boolean = token && token === 'tenemos_token' ? true : false;
     const hasTokenAndUsername = hasToken && username ? true : false;
 
-    console.log('hasToken', hasToken);
-
     // We create an object with the login information
     const loginInformation: iLoginInformation = {
       hasToken,

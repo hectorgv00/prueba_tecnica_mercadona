@@ -41,7 +41,6 @@ export class HomeComponent {
   onReviewClick(): void {
     const isUserLogged = this.checkIfUserIsLogged();
     if (isUserLogged) {
-      console.log('User is logged');
     } else {
       this.loginModalSE.openDialog();
     }

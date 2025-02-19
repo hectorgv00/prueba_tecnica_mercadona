@@ -49,7 +49,6 @@ export class LoginService {
 
   // Function that handles the login process, if the user has a token and a username, we log in, otherwise we log out
   public handleLogin(loginInformation: iLoginInformation) {
-    console.log(loginInformation);
     if (loginInformation.hasTokenAndUsername) {
       this.login(loginInformation.username);
     } else {
