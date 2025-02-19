@@ -48,4 +48,8 @@ export class LoginService {
       this.logout();
     }
   }
+
+  public isUserLogged(): boolean {
+    return this._loginInformation.getValue().hasTokenAndUsername;
+  }
 }

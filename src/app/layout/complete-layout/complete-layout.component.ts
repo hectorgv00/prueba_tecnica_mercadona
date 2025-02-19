@@ -15,16 +15,16 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrl: './complete-layout.component.scss',
 })
 export class CompleteLayoutComponent {
-  public isLogged: boolean = false;
+  isLogged: boolean = false;
 
-  public buttonOptionsLogin: iButtonOptions = {
+  buttonOptionsLogin: iButtonOptions = {
     text: 'Iniciar sesión',
     onClick: () => this.openDialog(),
     class: 'secondary',
     disabled: false,
   };
 
-  public buttonOptionsLogout: iButtonOptions = {
+  buttonOptionsLogout: iButtonOptions = {
     text: '',
     onClick: () => this.loginSE.logout(),
     class: 'no-background',
@@ -52,7 +52,7 @@ export class CompleteLayoutComponent {
     });
   }
 
-  public handleLogin() {
+  handleLogin() {
     const fakeData: iLoginInformation = {
       hasToken: true,
       username: 'mercadona',
@@ -64,7 +64,7 @@ export class CompleteLayoutComponent {
   }
 
   // Function that opens the login modal
-  public openDialog() {
+  openDialog() {
     // We create a subject to unsubscribe from the observable when the modal is closed
     const subject = new Subject();
 
