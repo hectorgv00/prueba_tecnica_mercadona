@@ -1,0 +1,8 @@
+<button
+  mat-button
+  [class]="buttonOptions.class"
+  [disabled]="buttonOptions.disabled"
+  (click)="buttonOptions.onClick()"
+>
+  {{ buttonOptions.text }}
+</button>
