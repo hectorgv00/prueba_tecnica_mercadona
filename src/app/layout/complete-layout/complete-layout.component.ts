@@ -6,6 +6,7 @@ import { LoginService } from '../../services/login.service';
 import { iLoginInformation } from '../../interfaces/iLoginInformation';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginModalComponent } from '../../modal/login-modal/login-modal.component';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-complete-layout',
@@ -61,10 +62,35 @@ export class CompleteLayoutComponent {
     this.loginSE.handleLogin(fakeData);
   }
 
+  // Function that opens the login modal
   public openDialog() {
+    // We create a subject to unsubscribe from the observable when the modal is closed
+    const subject = new Subject();
+
+    // we store the reference of the dialog to get the information once is closed
     const dialog = this.dialog.open(LoginModalComponent);
-    dialog.afterClosed().subscribe((result) => {
-      console.log(result);
-    });
+
+    // We subscribe to the observable of the dialog to get the information once is closed
+    dialog
+      .afterClosed()
+      .pipe(takeUntil(subject))
+      .subscribe((result: { username: string }) => {
+        // If the user has provided a username, we simulate the login process
+        if (result) {
+          // We create the object with the information of the user's session
+          const loginInformation: iLoginInformation = {
+            hasToken: true,
+            username: result.username,
+            hasTokenAndUsername: true,
+          };
+
+          // We call the function of the service that handles the login process
+          this.loginSE.handleLogin(loginInformation);
+        }
+
+        // We complete the subject to unsubscribe from the observable
+        subject.next('');
+        subject.complete();
+      });
   }
 }
