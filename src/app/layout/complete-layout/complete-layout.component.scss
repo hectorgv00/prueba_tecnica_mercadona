@@ -1,0 +1,27 @@
+#complete-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  width: 100%;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    min-height: 4rem;
+    border-bottom: 1px solid var(--primary-color);
+
+    .logo-and-text {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      > p {
+        color: var(--mercadona-typografy-color);
+        font-size: 1.5rem;
+        font-weight: var(--semiBold);
+      }
+    }
+  }
+}

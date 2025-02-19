@@ -1,5 +1,31 @@
+:root {
+  --primary-color: #3a7e45;
+  --secondary-color: #51565a;
+  --tertiary-color: #f2f4f8;
+  --quaternary-color: #d6d9df;
+  --white: #fff;
+  --black: #000;
+
+  --mercadona-typografy-color: #383d41;
+  --typografy-color: #222529;
+
+  --primary-font: "Roboto", sans-serif;
+
+  --bold: 600;
+  --semiBold: 500;
+  --regular: 400;
+  --light: 300;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  font-family: var(--primary-font);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
