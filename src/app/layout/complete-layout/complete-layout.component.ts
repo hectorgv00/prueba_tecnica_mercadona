@@ -14,13 +14,20 @@ import { iLoginInformation } from '../../interfaces/iLoginInformation';
 })
 export class CompleteLayoutComponent {
   public isLogged: boolean = false;
-  public username: string = '';
 
-  public buttonOptions: iButtonOptions = {
+  public buttonOptionsLogin: iButtonOptions = {
     text: 'Iniciar sesión',
     onClick: () => this.handleLogin(),
     class: 'secondary',
     disabled: false,
+  };
+
+  public buttonOptionsLogout: iButtonOptions = {
+    text: '',
+    onClick: () => this.loginSE.logout(),
+    class: 'no-background',
+    disabled: false,
+    icon: 'logout',
   };
 
   constructor(private loginSE: LoginService) {}
@@ -32,12 +39,12 @@ export class CompleteLayoutComponent {
 
   private connectToLoginServiceBS() {
     // We subscribe to the behavior subject to know if the user is logged in
-    this.loginSE.isLoggedIn.subscribe((isLogged) => {
+    this.loginSE.loginInformation.subscribe((isLogged: iLoginInformation) => {
       // We update the value of the variable that indicates if the user is logged in
-      this.isLogged = isLogged;
+      this.isLogged = isLogged.hasTokenAndUsername;
 
       // If the user is logged in, we get the username
-      if (isLogged) this.username = this.loginSE.username;
+      this.buttonOptionsLogout.text = isLogged.username;
     });
   }
 

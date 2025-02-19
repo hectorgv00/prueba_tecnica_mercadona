@@ -10,8 +10,10 @@
       <p>Mercadona</p>
     </div>
 
-    {{ isLogged ? "Bienvenido" : "Inicia sesión" }}
-
-    <app-button [buttonOptions]="buttonOptions"></app-button>
+    @if(isLogged){
+    <app-button [buttonOptions]="buttonOptionsLogout"></app-button>
+    }@else {
+    <app-button [buttonOptions]="buttonOptionsLogin"></app-button>
+    }
   </header>
 </main>
