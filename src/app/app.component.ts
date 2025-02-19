@@ -8,6 +8,7 @@ import { LoginService } from './services/login.service';
   imports: [RouterOutlet, CompleteLayoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  providers: [LoginService],
 })
 export class AppComponent {
   title = 'prueba_tecnica_mercadona';
