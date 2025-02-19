@@ -30,6 +30,7 @@ button {
   }
   &.no-background {
     background-color: transparent;
+    color: var(--typografy-color);
   }
 
   &:hover {
