@@ -1,0 +1,10 @@
+#tornillos-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 6rem;
+  width: 100%;
+  max-height: calc(100dvh - 73px);
+  min-height: calc(100dvh - 73px);
+  height: 100%;
+}
