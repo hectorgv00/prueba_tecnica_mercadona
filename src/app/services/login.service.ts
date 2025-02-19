@@ -1,6 +1,9 @@
 import { BehaviorSubject } from 'rxjs';
 import { iLoginInformation } from '../interfaces/iLoginInformation';
-
+import { Injectable } from '@angular/core';
+@Injectable({
+  providedIn: 'root',
+})
 export class LoginService {
   // We create a BehaviorSubject to store the login information, the information is an object with the following properties:
   // hasToken: boolean, it indicates if the user has a token

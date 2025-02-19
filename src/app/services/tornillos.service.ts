@@ -1,6 +1,9 @@
+import { Injectable } from '@angular/core';
 import { TornillosDB } from '../db/tornillos.db';
 import { iTornillos } from '../interfaces/iTornillos';
-
+@Injectable({
+  providedIn: 'root',
+})
 export class TornillosService {
   // We get all the tornillos from the "db"
   getTornillos(): iTornillos[] {

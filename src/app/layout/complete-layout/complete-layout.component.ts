@@ -4,22 +4,21 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { LoginService } from '../../services/login.service';
 import { iLoginInformation } from '../../interfaces/iLoginInformation';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginModalComponent } from '../../modal/login-modal/login-modal.component';
-import { Subject, takeUntil } from 'rxjs';
+import { LoginModalService } from '../../services/loginModal.service';
 
 @Component({
   selector: 'app-complete-layout',
   imports: [NgOptimizedImage, ButtonComponent],
   templateUrl: './complete-layout.component.html',
   styleUrl: './complete-layout.component.scss',
+  providers: [LoginService, LoginModalService],
 })
 export class CompleteLayoutComponent {
   isLogged: boolean = false;
 
   buttonOptionsLogin: iButtonOptions = {
     text: 'Iniciar sesión',
-    onClick: () => this.openDialog(),
+    onClick: () => this.loginModalSE.openDialog(),
     class: 'secondary',
     disabled: false,
   };
@@ -33,7 +32,10 @@ export class CompleteLayoutComponent {
     reverseIcon: true,
   };
 
-  constructor(private loginSE: LoginService, private dialog: MatDialog) {}
+  constructor(
+    private loginSE: LoginService,
+    private loginModalSE: LoginModalService
+  ) {}
 
   ngOnInit() {
     // We establish the connexion with the behavior subject of the service that handles the information of the user's session
@@ -50,48 +52,5 @@ export class CompleteLayoutComponent {
       // If the user is logged in, we get the username
       this.buttonOptionsLogout.text = isLogged.username;
     });
-  }
-
-  handleLogin() {
-    const fakeData: iLoginInformation = {
-      hasToken: true,
-      username: 'mercadona',
-      hasTokenAndUsername: true,
-    };
-
-    // We simulate the login process
-    this.loginSE.handleLogin(fakeData);
-  }
-
-  // Function that opens the login modal
-  openDialog() {
-    // We create a subject to unsubscribe from the observable when the modal is closed
-    const subject = new Subject();
-
-    // we store the reference of the dialog to get the information once is closed
-    const dialog = this.dialog.open(LoginModalComponent);
-
-    // We subscribe to the observable of the dialog to get the information once is closed
-    dialog
-      .afterClosed()
-      .pipe(takeUntil(subject))
-      .subscribe((result: { username: string }) => {
-        // If the user has provided a username, we simulate the login process
-        if (result) {
-          // We create the object with the information of the user's session
-          const loginInformation: iLoginInformation = {
-            hasToken: true,
-            username: result.username,
-            hasTokenAndUsername: true,
-          };
-
-          // We call the function of the service that handles the login process
-          this.loginSE.handleLogin(loginInformation);
-        }
-
-        // We complete the subject to unsubscribe from the observable
-        subject.next('');
-        subject.complete();
-      });
   }
 }
