@@ -10,7 +10,6 @@ import { iLoginInformation } from '../../interfaces/iLoginInformation';
   imports: [NgOptimizedImage, ButtonComponent],
   templateUrl: './complete-layout.component.html',
   styleUrl: './complete-layout.component.scss',
-  providers: [LoginService],
 })
 export class CompleteLayoutComponent {
   public isLogged: boolean = false;
@@ -40,6 +39,7 @@ export class CompleteLayoutComponent {
   private connectToLoginServiceBS() {
     // We subscribe to the behavior subject to know if the user is logged in
     this.loginSE.loginInformation.subscribe((isLogged: iLoginInformation) => {
+      console.log(isLogged);
       // We update the value of the variable that indicates if the user is logged in
       this.isLogged = isLogged.hasTokenAndUsername;
 
