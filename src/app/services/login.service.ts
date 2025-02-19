@@ -17,6 +17,7 @@ export class LoginService {
   }
 
   set username(username: string) {
+    localStorage.setItem('mercadona_username', username);
     this._username = username;
   }
 
