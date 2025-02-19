@@ -5,6 +5,7 @@ import { TornillosService } from '../../services/tornillos.service';
 import { LoginService } from '../../services/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginModalService } from '../../services/loginModal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,8 @@ export class HomeComponent {
   constructor(
     private tornillosSE: TornillosService,
     private loginSE: LoginService,
-    private loginModalSE: LoginModalService
+    private loginModalSE: LoginModalService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class HomeComponent {
   onReviewClick(): void {
     const isUserLogged = this.checkIfUserIsLogged();
     if (isUserLogged) {
+      this.goToTornillosPage();
     } else {
       this.loginModalSE.openDialog();
     }
@@ -48,5 +51,10 @@ export class HomeComponent {
 
   checkIfUserIsLogged(): boolean {
     return this.loginSE.isUserLogged();
+  }
+
+  // navigate to tornillos page
+  goToTornillosPage(): void {
+    this.router.navigate(['/tornillos']);
   }
 }
