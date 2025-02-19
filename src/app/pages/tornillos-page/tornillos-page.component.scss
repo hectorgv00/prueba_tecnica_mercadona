@@ -7,4 +7,19 @@
   max-height: calc(100dvh - 73px);
   min-height: calc(100dvh - 73px);
   height: 100%;
+
+  mat-icon {
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      transform: scale(1.05);
+      color: var(--primary);
+    }
+  }
+
+  .config-line {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
