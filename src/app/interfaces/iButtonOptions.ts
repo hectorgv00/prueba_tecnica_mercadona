@@ -4,4 +4,5 @@ export interface iButtonOptions {
   class: 'primary' | 'secondary' | 'tertiary' | 'no-background';
   disabled: boolean;
   icon?: string;
+  reverseIcon?: boolean;
 }

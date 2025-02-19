@@ -30,6 +30,7 @@ export class CompleteLayoutComponent {
     class: 'no-background',
     disabled: false,
     icon: 'logout',
+    reverseIcon: true,
   };
 
   constructor(private loginSE: LoginService, private dialog: MatDialog) {}

@@ -3,6 +3,7 @@
   [class]="buttonOptions.class"
   [disabled]="buttonOptions.disabled"
   (click)="buttonOptions.onClick()"
+  [ngClass]="{ 'row-reverse': buttonOptions.reverseIcon }"
 >
   <p>
     {{ buttonOptions.text }}
