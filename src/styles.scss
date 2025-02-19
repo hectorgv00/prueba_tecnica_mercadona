@@ -46,6 +46,12 @@
   font-family: var(--primary-font);
 }
 
+*[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 a {
   text-decoration: none;
   color: inherit;

@@ -5,11 +5,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { ButtonComponent } from '../../components/button/button.component';
 import { iButtonOptions } from '../../interfaces/iButtonOptions';
-import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-login-modal',
@@ -32,15 +36,34 @@ export class LoginModalComponent {
     class: 'secondary',
     text: 'cerrar',
     disabled: false,
-    onClick: () => {},
+    onClick: () => this.dialogRef.close(false),
   };
 
   submitButtonOptions: iButtonOptions = {
     class: 'primary',
     text: 'Iniciar sesión',
     disabled: true,
-    onClick: () => {},
+    onClick: () => this.submitForm(),
   };
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<LoginModalComponent>
+  ) {}
+
+  ngOnInit() {
+    this.suscribeToForm();
+  }
+
+  submitForm() {
+    if (this.loginForm.valid) {
+      this.dialogRef.close(this.loginForm.value);
+    }
+  }
+
+  suscribeToForm() {
+    this.loginForm.statusChanges.subscribe((status) => {
+      this.submitButtonOptions.disabled = status !== 'VALID';
+    });
+  }
 }
