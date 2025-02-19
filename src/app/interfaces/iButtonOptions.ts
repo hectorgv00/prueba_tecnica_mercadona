@@ -3,4 +3,5 @@ export interface iButtonOptions {
   onClick: Function;
   class: 'primary' | 'secondary' | 'tertiary' | 'no-background';
   disabled: boolean;
+  icon?: string;
 }

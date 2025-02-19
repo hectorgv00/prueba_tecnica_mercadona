@@ -4,5 +4,11 @@
   [disabled]="buttonOptions.disabled"
   (click)="buttonOptions.onClick()"
 >
-  {{ buttonOptions.text }}
+  <p>
+    {{ buttonOptions.text }}
+  </p>
+
+  @if(buttonOptions.icon){
+  <mat-icon> {{ buttonOptions.icon }} </mat-icon>
+  }
 </button>
