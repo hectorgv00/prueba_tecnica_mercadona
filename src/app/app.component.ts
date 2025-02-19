@@ -4,12 +4,17 @@ import { CompleteLayoutComponent } from './layout/complete-layout/complete-layou
 import { LoginService } from './services/login.service';
 import { iLoginInformation } from './interfaces/iLoginInformation';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getSpanishPaginatorIntl } from './config/spanish-translation-angular-material';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, CompleteLayoutComponent, MatDialogModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  providers: [
+    { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+  ],
 })
 export class AppComponent {
   title = 'prueba_tecnica_mercadona';
