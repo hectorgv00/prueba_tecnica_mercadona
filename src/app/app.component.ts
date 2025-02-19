@@ -10,7 +10,6 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [RouterOutlet, CompleteLayoutComponent, MatDialogModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [LoginService],
 })
 export class AppComponent {
   title = 'prueba_tecnica_mercadona';
@@ -31,6 +30,8 @@ export class AppComponent {
     const username: string | null = localStorage.getItem('mercadona_username');
     const hasToken: boolean = token && token === 'tenemos_token' ? true : false;
     const hasTokenAndUsername = hasToken && username ? true : false;
+
+    console.log('hasToken', hasToken);
 
     // We create an object with the login information
     const loginInformation: iLoginInformation = {
