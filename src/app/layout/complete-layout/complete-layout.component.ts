@@ -6,6 +6,7 @@ import { LoginService } from '../../services/login.service';
 import { iLoginInformation } from '../../interfaces/iLoginInformation';
 import { LoginModalService } from '../../services/loginModal.service';
 import { Subject, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-complete-layout',
@@ -38,7 +39,8 @@ export class CompleteLayoutComponent {
 
   constructor(
     private loginSE: LoginService,
-    private loginModalSE: LoginModalService
+    private loginModalSE: LoginModalService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -62,6 +64,10 @@ export class CompleteLayoutComponent {
   openLoginDialog() {
     const subject: Subject<any> = new Subject();
     this.loginModalSE.openDialog(subject);
+  }
+
+  goToHome() {
+    this.router.navigate(['/']);
   }
 
   ngOnDestroy(): void {
