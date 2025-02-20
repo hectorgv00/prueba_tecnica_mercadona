@@ -27,6 +27,7 @@
     (
       container-shape: 0px,
       container-color: var(--white),
+      container-max-width: 100%,
     )
   );
 
@@ -151,4 +152,15 @@ td {
   &:last-child {
     border-right: none;
   }
+}
+
+// Removal of the arrows in the input number
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

@@ -1,0 +1,73 @@
+#new-tornillo-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  min-height: 50dvh;
+  max-height: 80dvh;
+  min-width: 800px;
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--secondary-color);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  .button-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+::ng-deep {
+  mat-form-field {
+    > div {
+      width: 100%;
+      > div {
+        .mat-mdc-form-field-infix {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .input-price {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sum-or-minus-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: var(--semiBold);
+}
+
+.form-line {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+
+  > * {
+    min-width: 0;
+  }
+
+  &.double {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}

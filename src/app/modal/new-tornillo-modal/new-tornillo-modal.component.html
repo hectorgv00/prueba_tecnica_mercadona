@@ -1,20 +1,71 @@
-<div id="login-modal">
+<div id="new-tornillo-modal">
   <span class="close-button" (click)="closePopup()"
     ><mat-icon>close</mat-icon></span
   >
-  <p mat-dialog-title>Inicia sesión</p>
+  <p mat-dialog-title>Nuevo producto</p>
   <mat-dialog-content>
     <form (submit)="saveForm()" [formGroup]="newTornilloForm">
-      <div class="label-and-input">
-        <label for="username">Usuario</label>
-        <mat-form-field appearance="outline">
-          <input name="username" matInput formControlName="username" />
-        </mat-form-field>
+      <div class="form-line">
+        <div class="label-and-input">
+          <label for="nombre">Nombre</label>
+          <mat-form-field appearance="outline">
+            <input name="nombre" matInput formControlName="nombre" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-line double">
+        <div class="label-and-input">
+          <label for="precio">Precio</label>
+          <mat-form-field appearance="outline">
+            <span (click)="removePrice()" class="sum-or-minus-button"
+              ><mat-icon>remove</mat-icon></span
+            >
+            <input
+              class="input-price"
+              name="precio"
+              type="number"
+              matInput
+              formControlName="precio"
+              (input)="checkPrice($event)"
+            />
+            <span (click)="addPrice()" class="sum-or-minus-button"
+              ><mat-icon>add</mat-icon></span
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="label-and-input">
+          <label for="formato">Formato</label>
+          <mat-form-field appearance="outline">
+            <!-- <input name="formato" matInput  /> -->
+            <mat-select
+              placeholder="Selecciona un valor"
+              formControlName="formato"
+              name="formato"
+            >
+              @for (format of formats; track format) {
+              <mat-option [value]="format">{{ format }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-line">
+        <div class="label-and-input">
+          <label for="marca">Marca</label>
+          <mat-form-field appearance="outline">
+            <input name="marca" matInput formControlName="marca" />
+          </mat-form-field>
+        </div>
       </div>
     </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
     <div class="button-line">
       <app-button [buttonOptions]="cancelButtonOptions"></app-button>
       <app-button [buttonOptions]="saveButtonOptions"></app-button>
     </div>
-  </mat-dialog-content>
+  </mat-dialog-actions>
 </div>
