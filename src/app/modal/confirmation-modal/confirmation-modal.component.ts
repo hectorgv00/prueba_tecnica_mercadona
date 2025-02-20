@@ -6,6 +6,7 @@ import {
 } from '@angular/material/dialog';
 import { ButtonComponent } from '../../components/button/button.component';
 import { iButtonOptions } from '../../interfaces/iButtonOptions';
+import { iConfirmationModalContent } from '../../interfaces/iConfirmationModalContent';
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -29,7 +30,15 @@ export class ConfirmationModalComponent {
   };
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: iConfirmationModalContent,
     private dialogRef: MatDialogRef<ConfirmationModalComponent>
   ) {}
+
+  ngOnInit(): void {
+    this.setButtonsText();
+  }
+
+  setButtonsText(): void {
+    this.deleteButtonOptions.text = this.data.action;
+  }
 }
