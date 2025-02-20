@@ -4,7 +4,15 @@
     @for (column of displayedColumns; track $index) {
     <ng-container [matColumnDef]="column.variable">
       <th mat-header-cell *matHeaderCellDef>{{ column.header }}</th>
+      @if(column.variable === "precio"){
+      <td mat-cell *matCellDef="let element">
+        {{ element[column.variable] | currency : "EUR" }}
+      </td>
+
+      } @else {
+
       <td mat-cell *matCellDef="let element">{{ element[column.variable] }}</td>
+      }
     </ng-container>
     }
     <ng-container matColumnDef="actions">

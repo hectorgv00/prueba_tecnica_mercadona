@@ -4,10 +4,11 @@ import { MatTableModule } from '@angular/material/table';
 import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
 import { MatIconModule } from '@angular/material/icon';
 import { iPaginatorOptions } from '../../interfaces/iPaginatorOptions';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-table',
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, CommonModule],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })

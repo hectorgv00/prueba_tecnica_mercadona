@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CompleteLayoutComponent } from './layout/complete-layout/complete-layout.component';
 import { LoginService } from './services/login.service';
@@ -6,6 +6,10 @@ import { iLoginInformation } from './interfaces/iLoginInformation';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from './config/spanish-translation-angular-material';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs, 'es');
 
 @Component({
   selector: 'app-root',
@@ -14,6 +18,7 @@ import { getSpanishPaginatorIntl } from './config/spanish-translation-angular-ma
   styleUrl: './app.component.scss',
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+    { provide: LOCALE_ID, useValue: 'es' },
   ],
 })
 export class AppComponent {
