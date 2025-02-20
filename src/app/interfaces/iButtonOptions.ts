@@ -5,4 +5,5 @@ export interface iButtonOptions {
   disabled: boolean;
   icon?: string;
   reverseIcon?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
