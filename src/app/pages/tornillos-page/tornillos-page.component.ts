@@ -5,10 +5,12 @@ import { TableComponent } from '../../components/table/table.component';
 import { iTornillos } from '../../interfaces/iTornillos';
 import { TornillosDB } from '../../db/tornillos.db';
 import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
+import { ButtonComponent } from '../../components/button/button.component';
+import { iButtonOptions } from '../../interfaces/iButtonOptions';
 
 @Component({
   selector: 'app-tornillos-page',
-  imports: [LoaderComponent, MatIconModule, TableComponent],
+  imports: [LoaderComponent, MatIconModule, TableComponent, ButtonComponent],
   templateUrl: './tornillos-page.component.html',
   styleUrl: './tornillos-page.component.scss',
 })
@@ -23,6 +25,15 @@ export class TornillosPageComponent {
     { header: 'Formato', variable: 'formato' },
     { header: 'Marca', variable: 'marca' },
   ];
+
+  addProductButtonOptions: iButtonOptions = {
+    class: 'primary',
+    disabled: false,
+    onClick: () => {
+      console.log('Add product button clicked');
+    },
+    text: 'Añadir producto',
+  };
 
   constructor() {}
 
