@@ -11,9 +11,11 @@ import { PageEvent } from '@angular/material/paginator';
 import { TornillosService } from '../../services/tornillos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShuffleColumnsModalComponent } from '../../modal/shuffle-columns-modal/shuffle-columns-modal.component';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { TornillosTableHeaderService } from '../../services/tornillos-table-header.service';
 import { NewTornilloModalComponent } from '../../modal/new-tornillo-modal/new-tornillo-modal.component';
+import { confirmationModalService } from '../../services/confirmation-modal.service';
+import { iConfirmationModalContent } from '../../interfaces/iConfirmationModalContent';
 
 @Component({
   selector: 'app-tornillos-page',
@@ -58,7 +60,8 @@ export class TornillosPageComponent {
   constructor(
     private tornillosSE: TornillosService,
     private dialog: MatDialog,
-    private tornillosTableHeaderSE: TornillosTableHeaderService
+    private tornillosTableHeaderSE: TornillosTableHeaderService,
+    private confirmationModalSE: confirmationModalService
   ) {}
 
   ngOnInit(): void {
@@ -131,6 +134,22 @@ export class TornillosPageComponent {
 
   deleteTornillo(id: number) {
     console.log('Delete tornillo with id:', id);
+    const subject: Subject<any> = new Subject<any>();
+    const confirmationModalContent: iConfirmationModalContent = {
+      action: 'Eliminar',
+      content: '¿Desea eliminar el elemento seleccionado?',
+    };
+    this.confirmationModalSE.openDialog(subject, confirmationModalContent);
+    subject.subscribe((result) => {
+      if (result) {
+        this.tornillosSE.deleteTornillo(id);
+        this.getTornillosCount();
+        this.dataSource = this.tornillosSE.getTornillosPaginated(
+          this.pageIndex,
+          this.pageSize
+        );
+      }
+    });
   }
 
   ngOnDestroy(): void {

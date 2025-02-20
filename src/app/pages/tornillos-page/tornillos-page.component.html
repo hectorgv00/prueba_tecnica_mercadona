@@ -8,7 +8,7 @@
     [dataSource]="dataSource"
     [displayedColumns]="displayedColumns"
     [paginatorOptions]="paginatorOptions"
-    [deleteAction]="deleteTornillo"
+    [deleteAction]="deleteTornillo.bind(this)"
   ></app-table>
 
   <footer>
