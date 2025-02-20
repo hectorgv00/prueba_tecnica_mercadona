@@ -32,8 +32,9 @@ export class TornillosService {
 
   // we add a new tornillo to the "db"
   addTornillo(tornillo: iTornillos): void {
+    const tornilloWithUUID = { ...tornillo, id: Date.now() };
     const tornillos = TornillosDB.getTornillos();
-    tornillos.unshift(tornillo);
+    tornillos.unshift(tornilloWithUUID);
     this.setTornillos(tornillos);
   }
 
