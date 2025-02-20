@@ -1,0 +1,45 @@
+<div id="shuffle-columns-modal">
+  <span class="close-button"><mat-icon>close</mat-icon></span>
+  <mat-dialog-content>
+    <p class="subtitle">Reordenar, fijar u ocultar las columnas de la tabla</p>
+    <p class="title">Configurar columnas</p>
+
+    <div
+      class="drag-and-drop-rows"
+      cdkDropList
+      (cdkDropListDropped)="onDrop($event)"
+    >
+      @for(column of sortedColumns; track $index){
+      <span class="row" cdkDrag>
+        <span class="index-block">{{ $index + 1 }}</span>
+        <span class="content-block">
+          <span class="handle" cdkDragHandle>
+            <mat-icon> drag_indicator </mat-icon>
+          </span>
+          <p class="column-name">
+            {{ column.header }}
+          </p>
+
+          <span class="keep" (click)="swapProperty(column, 'pinned')">
+            @if(column.pinned){
+            <img class="icon" src="/icons/pin.svg" alt="pin" />
+
+            } @else {
+            <img class="icon" src="/icons/pin_off.svg" alt="pin" />
+            }
+          </span>
+          <span class="see" (click)="swapProperty(column, 'visible')">
+            @if(column.visible){
+            <mat-icon class="icon">visibility</mat-icon>
+
+            }@else {
+            <mat-icon class="icon">visibility_off</mat-icon>
+
+            }
+          </span>
+        </span>
+      </span>
+      }
+    </div>
+  </mat-dialog-content>
+</div>

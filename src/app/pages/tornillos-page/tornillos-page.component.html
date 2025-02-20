@@ -2,7 +2,7 @@
 
 <div id="tornillos-page">
   <div class="config-line">
-    <mat-icon>settings</mat-icon>
+    <mat-icon (click)="openShuffleColumnsModal()">settings</mat-icon>
   </div>
   <app-table
     [dataSource]="dataSource"

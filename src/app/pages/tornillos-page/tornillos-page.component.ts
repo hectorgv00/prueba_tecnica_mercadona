@@ -9,6 +9,8 @@ import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { iPaginatorOptions } from '../../interfaces/iPaginatorOptions';
 import { PageEvent } from '@angular/material/paginator';
 import { TornillosService } from '../../services/tornillos.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ShuffleColumnsModalComponent } from '../../modal/shuffle-columns-modal/shuffle-columns-modal.component';
 
 @Component({
   selector: 'app-tornillos-page',
@@ -22,10 +24,34 @@ export class TornillosPageComponent {
   dataSource: iTornillos[] = [];
 
   displayedColumns: iTableHeaderAndVariable[] = [
-    { header: 'Nombre', variable: 'nombre' },
-    { header: 'Precio', variable: 'precio' },
-    { header: 'Formato', variable: 'formato' },
-    { header: 'Marca', variable: 'marca' },
+    {
+      header: 'Nombre',
+      variable: 'nombre',
+      index: 0,
+      pinned: true,
+      visible: true,
+    },
+    {
+      header: 'Precio',
+      variable: 'precio',
+      index: 1,
+      pinned: false,
+      visible: true,
+    },
+    {
+      header: 'Formato',
+      variable: 'formato',
+      index: 2,
+      pinned: false,
+      visible: true,
+    },
+    {
+      header: 'Marca',
+      variable: 'marca',
+      index: 3,
+      pinned: false,
+      visible: true,
+    },
   ];
 
   addProductButtonOptions: iButtonOptions = {
@@ -51,7 +77,10 @@ export class TornillosPageComponent {
   pageIndex: number = 0;
   pageSize: number = 5;
 
-  constructor(private tornillosSE: TornillosService) {}
+  constructor(
+    private tornillosSE: TornillosService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -75,5 +104,11 @@ export class TornillosPageComponent {
       this.pageIndex,
       this.pageSize
     );
+  }
+
+  openShuffleColumnsModal() {
+    this.dialog.open(ShuffleColumnsModalComponent, {
+      data: { columns: this.displayedColumns },
+    });
   }
 }
