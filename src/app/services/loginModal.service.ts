@@ -12,9 +12,8 @@ export class LoginModalService {
   constructor(private dialog: MatDialog, private loginSE: LoginService) {}
 
   // Function that opens the login modal
-  openDialog() {
+  openDialog(subject: Subject<any>): void {
     // We create a subject to unsubscribe from the observable when the modal is closed
-    const subject = new Subject();
 
     // we store the reference of the dialog to get the information once is closed
     const dialog = this.dialog.open(LoginModalComponent);
@@ -38,7 +37,7 @@ export class LoginModalService {
         }
 
         // We complete the subject to unsubscribe from the observable
-        subject.next('');
+        subject.next(true);
         subject.complete();
       });
   }

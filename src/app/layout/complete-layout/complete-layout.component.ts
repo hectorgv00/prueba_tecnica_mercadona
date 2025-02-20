@@ -5,6 +5,7 @@ import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { LoginService } from '../../services/login.service';
 import { iLoginInformation } from '../../interfaces/iLoginInformation';
 import { LoginModalService } from '../../services/loginModal.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-complete-layout',
@@ -18,7 +19,7 @@ export class CompleteLayoutComponent {
 
   buttonOptionsLogin: iButtonOptions = {
     text: 'Iniciar sesión',
-    onClick: () => this.loginModalSE.openDialog(),
+    onClick: () => this.openLoginDialog(),
     class: 'secondary',
     disabled: false,
   };
@@ -51,5 +52,10 @@ export class CompleteLayoutComponent {
       // If the user is logged in, we get the username
       this.buttonOptionsLogout.text = isLogged.username;
     });
+  }
+
+  openLoginDialog() {
+    const subject: Subject<any> = new Subject();
+    this.loginModalSE.openDialog(subject);
   }
 }

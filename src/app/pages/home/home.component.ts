@@ -6,6 +6,7 @@ import { LoginService } from '../../services/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginModalService } from '../../services/loginModal.service';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -45,7 +46,7 @@ export class HomeComponent {
     if (isUserLogged) {
       this.goToTornillosPage();
     } else {
-      this.loginModalSE.openDialog();
+      this.handleLogin();
     }
   }
 
@@ -53,8 +54,15 @@ export class HomeComponent {
     return this.loginSE.isUserLogged();
   }
 
-  // navigate to tornillos page
   goToTornillosPage(): void {
     this.router.navigate(['/tornillos']);
+  }
+
+  handleLogin(): void {
+    const subject = new Subject();
+    this.loginModalSE.openDialog(subject);
+    subject.subscribe((value) => {
+      if (value) this.goToTornillosPage();
+    });
   }
 }
