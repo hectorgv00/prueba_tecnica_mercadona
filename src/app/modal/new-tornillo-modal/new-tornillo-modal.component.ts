@@ -56,6 +56,7 @@ export class NewTornilloModalComponent {
     text: 'Guardar',
     disabled: true,
     onClick: () => this.saveForm(),
+    type: 'submit',
   };
 
   // subscribe

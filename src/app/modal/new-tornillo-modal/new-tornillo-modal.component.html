@@ -4,7 +4,12 @@
   >
   <p mat-dialog-title>Nuevo producto</p>
   <mat-dialog-content>
-    <form (submit)="saveForm()" [formGroup]="newTornilloForm">
+    <form (ngSubmit)="saveForm()" [formGroup]="newTornilloForm">
+      <button
+        type="submit"
+        [disabled]="saveButtonOptions.disabled"
+        style="display: none"
+      ></button>
       <div class="form-line">
         <div class="label-and-input">
           <label for="nombre">Nombre</label>
@@ -38,7 +43,6 @@
         <div class="label-and-input">
           <label for="formato">Formato</label>
           <mat-form-field appearance="outline">
-            <!-- <input name="formato" matInput  /> -->
             <mat-select
               placeholder="Selecciona un valor"
               formControlName="formato"
