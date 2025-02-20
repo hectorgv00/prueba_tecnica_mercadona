@@ -1,0 +1,20 @@
+<div id="login-modal">
+  <span class="close-button" (click)="closePopup()"
+    ><mat-icon>close</mat-icon></span
+  >
+  <p mat-dialog-title>Inicia sesión</p>
+  <mat-dialog-content>
+    <form (submit)="saveForm()" [formGroup]="newTornilloForm">
+      <div class="label-and-input">
+        <label for="username">Usuario</label>
+        <mat-form-field appearance="outline">
+          <input name="username" matInput formControlName="username" />
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="button-line">
+      <app-button [buttonOptions]="cancelButtonOptions"></app-button>
+      <app-button [buttonOptions]="saveButtonOptions"></app-button>
+    </div>
+  </mat-dialog-content>
+</div>
