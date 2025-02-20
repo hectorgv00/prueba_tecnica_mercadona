@@ -50,4 +50,12 @@ export class TornillosService {
     );
     return [...new Set(formatos)];
   }
+
+  deleteTornillo(id: number) {
+    const tornillos = TornillosDB.getTornillos().filter(
+      (tornillo) => tornillo.id !== id
+    );
+    this.setTornillos(tornillos);
+    localStorage.setItem('tornillos', JSON.stringify(tornillos));
+  }
 }
