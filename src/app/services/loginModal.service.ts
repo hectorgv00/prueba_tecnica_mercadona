@@ -1,5 +1,5 @@
 import { MatDialog } from '@angular/material/dialog';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { LoginService } from './login.service';
 import { LoginModalComponent } from '../modal/login-modal/login-modal.component';
 import { iLoginInformation } from '../interfaces/iLoginInformation';
@@ -9,6 +9,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoginModalService {
+  private dialogSubscription: Subscription | null = null;
+
   constructor(private dialog: MatDialog, private loginSE: LoginService) {}
 
   // Function that opens the login modal
@@ -19,7 +21,7 @@ export class LoginModalService {
     const dialog = this.dialog.open(LoginModalComponent);
 
     // We subscribe to the observable of the dialog to get the information once is closed
-    dialog
+    this.dialogSubscription = dialog
       .afterClosed()
       .pipe(takeUntil(subject))
       .subscribe((result: { username: string }) => {
@@ -40,5 +42,9 @@ export class LoginModalService {
         subject.next(true);
         subject.complete();
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.dialogSubscription) this.dialogSubscription.unsubscribe();
   }
 }

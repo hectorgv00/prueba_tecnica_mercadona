@@ -5,7 +5,7 @@ import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { LoginService } from '../../services/login.service';
 import { iLoginInformation } from '../../interfaces/iLoginInformation';
 import { LoginModalService } from '../../services/loginModal.service';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-complete-layout',
@@ -33,6 +33,9 @@ export class CompleteLayoutComponent {
     reverseIcon: true,
   };
 
+  // suscription
+  private loginInformationSubscription: Subscription | null = null;
+
   constructor(
     private loginSE: LoginService,
     private loginModalSE: LoginModalService
@@ -45,17 +48,24 @@ export class CompleteLayoutComponent {
 
   private connectToLoginServiceBS() {
     // We subscribe to the behavior subject to know if the user is logged in
-    this.loginSE.loginInformation.subscribe((isLogged: iLoginInformation) => {
-      // We update the value of the variable that indicates if the user is logged in
-      this.isLogged = isLogged.hasTokenAndUsername;
+    this.loginInformationSubscription = this.loginSE.loginInformation.subscribe(
+      (isLogged: iLoginInformation) => {
+        // We update the value of the variable that indicates if the user is logged in
+        this.isLogged = isLogged.hasTokenAndUsername;
 
-      // If the user is logged in, we get the username
-      this.buttonOptionsLogout.text = isLogged.username;
-    });
+        // If the user is logged in, we get the username
+        this.buttonOptionsLogout.text = isLogged.username;
+      }
+    );
   }
 
   openLoginDialog() {
     const subject: Subject<any> = new Subject();
     this.loginModalSE.openDialog(subject);
+  }
+
+  ngOnDestroy(): void {
+    if (this.loginInformationSubscription)
+      this.loginInformationSubscription.unsubscribe();
   }
 }

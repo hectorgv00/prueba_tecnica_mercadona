@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ButtonComponent } from '../../components/button/button.component';
 import { iButtonOptions } from '../../interfaces/iButtonOptions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-modal',
@@ -46,6 +47,9 @@ export class LoginModalComponent {
     onClick: () => this.submitForm(),
   };
 
+  // subscribe
+  loginFormSubscription: Subscription | null = null;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<LoginModalComponent>
@@ -62,8 +66,14 @@ export class LoginModalComponent {
   }
 
   suscribeToForm() {
-    this.loginForm.statusChanges.subscribe((status) => {
-      this.submitButtonOptions.disabled = status !== 'VALID';
-    });
+    this.loginFormSubscription = this.loginForm.statusChanges.subscribe(
+      (status) => {
+        this.submitButtonOptions.disabled = status !== 'VALID';
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.loginFormSubscription) this.loginFormSubscription.unsubscribe();
   }
 }

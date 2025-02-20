@@ -6,7 +6,7 @@ import { LoginService } from '../../services/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginModalService } from '../../services/loginModal.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +25,9 @@ export class HomeComponent {
   };
 
   tornilloCount: number = 0;
+
+  // subscription
+  subjectSubscription: Subscription | null = null;
 
   constructor(
     private tornillosSE: TornillosService,
@@ -61,8 +64,12 @@ export class HomeComponent {
   handleLogin(): void {
     const subject = new Subject();
     this.loginModalSE.openDialog(subject);
-    subject.subscribe((value) => {
+    this.subjectSubscription = subject.subscribe((value) => {
       if (value) this.goToTornillosPage();
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subjectSubscription) this.subjectSubscription.unsubscribe();
   }
 }
