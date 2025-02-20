@@ -88,19 +88,41 @@ a {
   Table styles
 **/
 
-table {
-  width: 100%;
-  overflow: hidden;
+.table-container {
+  max-height: calc(100dvh - 73px - 24px - 4rem - 58px);
+  overflow-y: auto;
+  position: relative;
+
+  mat-paginator {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
 }
 
-tbody {
-  display: block;
-  max-height: 60dvh;
-  overflow-y: auto;
-  width: 100%;
+::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
 }
-::-webkit-scrollbar {
-  display: none;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 thead,
@@ -108,9 +130,7 @@ tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
-
   background-color: #fff;
-
   &:nth-child(even) {
     background-color: var(--quintenary-color);
   }
@@ -119,6 +139,8 @@ tbody tr {
 thead {
   background-color: var(--quaternary-color) !important;
   border: none;
+  position: sticky;
+  top: 0;
 }
 th,
 td {
