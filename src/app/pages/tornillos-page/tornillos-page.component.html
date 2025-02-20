@@ -11,7 +11,11 @@
   ></app-table>
 
   <footer>
-    <app-button [buttonOptions]="addProductButtonOptions"> </app-button>
+    <app-button
+      (click)="openNewTornilloModal()"
+      [buttonOptions]="addProductButtonOptions"
+    >
+    </app-button>
   </footer>
 </div>
 } @else {

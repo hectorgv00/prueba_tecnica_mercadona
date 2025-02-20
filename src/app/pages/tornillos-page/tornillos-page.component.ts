@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ShuffleColumnsModalComponent } from '../../modal/shuffle-columns-modal/shuffle-columns-modal.component';
 import { Subscription } from 'rxjs';
 import { TornillosTableHeaderService } from '../../services/tornillos-table-header.service';
+import { NewTornilloModalComponent } from '../../modal/new-tornillo-modal/new-tornillo-modal.component';
 
 @Component({
   selector: 'app-tornillos-page',
@@ -52,6 +53,7 @@ export class TornillosPageComponent {
 
   // subscription
   shuffleColumnsModalSubscription: Subscription | null = null;
+  newTornilloModalSubscription: Subscription | null = null;
 
   constructor(
     private tornillosSE: TornillosService,
@@ -109,8 +111,22 @@ export class TornillosPageComponent {
       });
   }
 
+  openNewTornilloModal() {
+    const newTornilloModal = this.dialog.open(NewTornilloModalComponent);
+
+    this.newTornilloModalSubscription = newTornilloModal
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          console.log(result);
+        }
+      });
+  }
+
   ngOnDestroy(): void {
     if (this.shuffleColumnsModalSubscription)
       this.shuffleColumnsModalSubscription.unsubscribe();
+    if (this.newTornilloModalSubscription)
+      this.newTornilloModalSubscription.unsubscribe();
   }
 }
