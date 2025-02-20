@@ -33,4 +33,11 @@ export class UsefulService {
       ];
     }
   }
+
+  static resetIndexes(array: any[]) {
+    return array.map((el, index) => {
+      el.index = index;
+      return el;
+    });
+  }
 }

@@ -10,6 +10,7 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
 import { UsefulService } from '../../services/useful.service';
+import { iButtonOptions } from '../../interfaces/iButtonOptions';
 
 @Component({
   selector: 'app-shuffle-columns-modal',
@@ -24,6 +25,20 @@ import { UsefulService } from '../../services/useful.service';
   styleUrl: './shuffle-columns-modal.component.scss',
 })
 export class ShuffleColumnsModalComponent {
+  cancelButtonOptions: iButtonOptions = {
+    class: 'no-background',
+    text: 'Cancelar',
+    disabled: false,
+    onClick: () => this.dialogRef.close(false),
+  };
+
+  applyButtonOptions: iButtonOptions = {
+    class: 'primary',
+    text: 'Aplicar',
+    disabled: false,
+    onClick: () => this.dialogRef.close(this.sortedColumns),
+  };
+
   sortedColumns: iTableHeaderAndVariable[] = [];
 
   constructor(
@@ -49,16 +64,16 @@ export class ShuffleColumnsModalComponent {
     const previousIndex = event.previousIndex;
     const currentIndex = event.currentIndex;
 
-    this.sortedColumns = UsefulService.swapArrayElements(
+    const swappedColumnsArray = UsefulService.swapArrayElements(
       this.sortedColumns,
       previousIndex,
       currentIndex
     );
+
+    this.sortedColumns = UsefulService.resetIndexes(swappedColumnsArray);
   }
 
   swapProperty(element: iTableHeaderAndVariable, property: string): void {
-    console.log(element);
     element[property] = !element[property];
-    console.log(element);
   }
 }
