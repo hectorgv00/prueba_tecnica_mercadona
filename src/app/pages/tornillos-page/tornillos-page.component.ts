@@ -103,8 +103,7 @@ export class TornillosPageComponent {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
-          console.log(result);
-          this.displayedColumns = result;
+          this.displayedColumns = [...result];
           this.setTornillosTableHeader(result);
         }
       });

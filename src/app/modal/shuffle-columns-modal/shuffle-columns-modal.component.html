@@ -15,7 +15,11 @@
       <span class="row" cdkDrag>
         <span class="index-block">{{ $index + 1 }}</span>
         <span class="content-block">
-          <span class="handle" cdkDragHandle>
+          <span
+            class="handle"
+            [ngClass]="{ disabled: column.pinned }"
+            cdkDragHandle
+          >
             <mat-icon> drag_indicator </mat-icon>
           </span>
           <p class="column-name">

@@ -25,7 +25,8 @@ export class TableComponent {
 
   set displayedColumns(columns: iTableHeaderAndVariable[]) {
     this._columns = columns;
-    this.displayedColumnIds = columns.map((c) => c.variable);
+    const filteredColumns = columns.filter((c) => c.visible);
+    this.displayedColumnIds = [...filteredColumns.map((c) => c.variable)];
     this.displayedColumnIds.push('actions');
   }
 
