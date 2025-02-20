@@ -34,4 +34,12 @@ export class TornillosService {
   addTornillo(tornillo: iTornillos): void {
     TornillosDB.getTornillos().unshift(tornillo);
   }
+
+  getFormatosUnique(): string[] {
+    const tornillos: iTornillos[] = TornillosDB.getTornillos();
+    const formatos: string[] = tornillos.map(
+      (tornillo: iTornillos) => tornillo.formato
+    );
+    return [...new Set(formatos)];
+  }
 }
