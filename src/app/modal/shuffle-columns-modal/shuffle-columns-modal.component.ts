@@ -29,7 +29,7 @@ export class ShuffleColumnsModalComponent {
     class: 'no-background',
     text: 'Cancelar',
     disabled: false,
-    onClick: () => this.dialogRef.close(false),
+    onClick: () => this.closePopup(),
   };
 
   applyButtonOptions: iButtonOptions = {
@@ -75,5 +75,9 @@ export class ShuffleColumnsModalComponent {
 
   swapProperty(element: iTableHeaderAndVariable, property: string): void {
     element[property] = !element[property];
+  }
+
+  closePopup(): void {
+    this.dialogRef.close(false);
   }
 }
