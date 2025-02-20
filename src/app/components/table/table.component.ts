@@ -33,5 +33,8 @@ export class TableComponent {
   @Input({ required: true })
   paginatorOptions!: iPaginatorOptions;
 
+  @Input({ required: true })
+  deleteAction!: (id: number) => void;
+
   displayedColumnIds: string[] = [];
 }

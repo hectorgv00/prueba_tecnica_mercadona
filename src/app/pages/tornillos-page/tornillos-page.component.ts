@@ -129,6 +129,10 @@ export class TornillosPageComponent {
       });
   }
 
+  deleteTornillo(id: number) {
+    console.log('Delete tornillo with id:', id);
+  }
+
   ngOnDestroy(): void {
     if (this.shuffleColumnsModalSubscription)
       this.shuffleColumnsModalSubscription.unsubscribe();
