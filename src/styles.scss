@@ -6,6 +6,7 @@
   --tertiary-color: #aa2223;
   --quaternary-color: #d6d9df;
   --quintenary-color: #f2f4f8;
+  --sextary-color: #eaecef;
   --white: #fff;
   --black: #000;
 
@@ -83,17 +84,23 @@ a {
   }
 }
 
+/**
+  Table styles
+**/
+
 table {
   width: 100%;
   overflow: hidden;
 }
 
 tbody {
-  padding-top: 1rem;
   display: block;
   max-height: 60dvh;
   overflow-y: auto;
   width: 100%;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 
 thead,
@@ -101,4 +108,24 @@ tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
+
+  background-color: #fff;
+
+  &:nth-child(even) {
+    background-color: var(--quintenary-color);
+  }
+}
+
+thead {
+  background-color: var(--quaternary-color) !important;
+  border: none;
+}
+th,
+td {
+  border-bottom-style: none !important;
+  border-right: 1px solid var(--sextary-color);
+
+  &:last-child {
+    border-right: none;
+  }
 }

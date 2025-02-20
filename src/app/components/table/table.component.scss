@@ -8,9 +8,6 @@ mat-icon {
   }
 }
 
-:ng-deep {
-  tbody {
-    max-height: 70dvh;
-    overflow-y: auto;
-  }
+.text-align-end {
+  text-align: end;
 }
