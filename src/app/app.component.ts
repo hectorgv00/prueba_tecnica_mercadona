@@ -11,6 +11,8 @@ import localeEs from '@angular/common/locales/es';
 import { iTableHeaderAndVariable } from './interfaces/iTableHeaderAndVariable';
 import { TornillosTableHeaderDB } from './db/tornillos-table-header.db';
 import { TornillosTableHeaderService } from './services/tornillos-table-header.service';
+import { iTornillos } from './interfaces/iTornillos';
+import { TornillosService } from './services/tornillos.service';
 
 registerLocaleData(localeEs, 'es');
 
@@ -29,12 +31,14 @@ export class AppComponent {
 
   constructor(
     private loginSE: LoginService,
-    private tornillosTableHeaderSE: TornillosTableHeaderService
+    private tornillosTableHeaderSE: TornillosTableHeaderService,
+    private tornillosSE: TornillosService
   ) {}
 
   ngOnInit() {
     this.manageLogin();
     this.manageColumns();
+    this.manageTornillos();
   }
 
   // Login management
@@ -76,6 +80,19 @@ export class AppComponent {
     } else {
       const columns = this.tornillosTableHeaderSE.getTornillosTableHeader();
       localStorage.setItem('tornillos_columns', JSON.stringify(columns));
+    }
+  }
+
+  // Tornillos management
+
+  manageTornillos() {
+    const tornillos: string | null = localStorage.getItem('tornillos');
+    if (tornillos) {
+      const parsedTornillos: iTornillos[] = JSON.parse(tornillos);
+      this.tornillosSE.setTornillos(parsedTornillos);
+    } else {
+      const tornillos = this.tornillosSE.getTornillos();
+      localStorage.setItem('tornillos', JSON.stringify(tornillos));
     }
   }
 }

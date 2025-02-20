@@ -119,6 +119,12 @@ export class TornillosPageComponent {
       .subscribe((result) => {
         if (result) {
           console.log(result);
+          this.tornillosSE.addTornillo(result);
+          this.getTornillosCount();
+          this.dataSource = this.tornillosSE.getTornillosPaginated(
+            this.pageIndex,
+            this.pageSize
+          );
         }
       });
   }

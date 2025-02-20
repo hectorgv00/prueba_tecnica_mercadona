@@ -32,7 +32,14 @@ export class TornillosService {
 
   // we add a new tornillo to the "db"
   addTornillo(tornillo: iTornillos): void {
-    TornillosDB.getTornillos().unshift(tornillo);
+    const tornillos = TornillosDB.getTornillos();
+    tornillos.unshift(tornillo);
+    this.setTornillos(tornillos);
+  }
+
+  setTornillos(tornillos: iTornillos[]): void {
+    TornillosDB.setTornillos(tornillos);
+    localStorage.setItem('tornillos', JSON.stringify(tornillos));
   }
 
   getFormatosUnique(): string[] {

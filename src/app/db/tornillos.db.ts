@@ -379,4 +379,8 @@ export class TornillosDB {
   public static getTornillos(): iTornillos[] {
     return this.tornillosDB;
   }
+
+  public static setTornillos(tornillos: iTornillos[]): void {
+    this.tornillosDB = tornillos;
+  }
 }
