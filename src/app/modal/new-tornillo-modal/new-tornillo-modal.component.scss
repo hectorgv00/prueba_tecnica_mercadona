@@ -7,18 +7,6 @@
   max-height: 80dvh;
   min-width: 800px;
 
-  .close-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    color: var(--secondary-color);
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
   .button-line {
     display: flex;
     align-items: center;

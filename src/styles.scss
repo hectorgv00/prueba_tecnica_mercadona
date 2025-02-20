@@ -164,3 +164,19 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+// Close button modal
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--secondary-color);
+  z-index: 2;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
