@@ -18,6 +18,14 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumnIds"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+  <mat-paginator
+    [pageSizeOptions]="paginatorOptions.pageSizeOptions"
+    [pageSize]="paginatorOptions.pageSize"
+    [length]="paginatorOptions.length"
+    [pageIndex]="paginatorOptions.pageIndex"
+    (page)="paginatorOptions.onPageChange($event)"
+    [disabled]="paginatorOptions.disabled"
+    [showFirstLastButtons]="paginatorOptions.showFirstLastButtons"
+  >
   </mat-paginator>
 </div>
