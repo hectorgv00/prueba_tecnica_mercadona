@@ -12,6 +12,7 @@ import { TornillosService } from '../../services/tornillos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShuffleColumnsModalComponent } from '../../modal/shuffle-columns-modal/shuffle-columns-modal.component';
 import { Subscription } from 'rxjs';
+import { TornillosTableHeaderService } from '../../services/tornillos-table-header.service';
 
 @Component({
   selector: 'app-tornillos-page',
@@ -24,36 +25,7 @@ export class TornillosPageComponent {
 
   dataSource: iTornillos[] = [];
 
-  displayedColumns: iTableHeaderAndVariable[] = [
-    {
-      header: 'Nombre',
-      variable: 'nombre',
-      index: 0,
-      pinned: true,
-      visible: true,
-    },
-    {
-      header: 'Precio',
-      variable: 'precio',
-      index: 1,
-      pinned: false,
-      visible: true,
-    },
-    {
-      header: 'Formato',
-      variable: 'formato',
-      index: 2,
-      pinned: false,
-      visible: true,
-    },
-    {
-      header: 'Marca',
-      variable: 'marca',
-      index: 3,
-      pinned: false,
-      visible: true,
-    },
-  ];
+  displayedColumns: iTableHeaderAndVariable[] = [];
 
   addProductButtonOptions: iButtonOptions = {
     class: 'primary',
@@ -83,7 +55,8 @@ export class TornillosPageComponent {
 
   constructor(
     private tornillosSE: TornillosService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tornillosTableHeaderSE: TornillosTableHeaderService
   ) {}
 
   ngOnInit(): void {
@@ -93,12 +66,23 @@ export class TornillosPageComponent {
         this.pageIndex,
         this.pageSize
       );
-      this.setTornillosCount();
+      this.getTornillosCount();
+      this.getTornillosTableHeader();
     }, 1000);
   }
 
-  setTornillosCount() {
+  getTornillosCount() {
     this.paginatorOptions.length = this.tornillosSE.getTornillosCount();
+  }
+
+  getTornillosTableHeader() {
+    this.displayedColumns =
+      this.tornillosTableHeaderSE.getTornillosTableHeader();
+    console.log(this.displayedColumns);
+  }
+
+  setTornillosTableHeader(result: iTableHeaderAndVariable[]) {
+    this.tornillosTableHeaderSE.setTornillosTableHeader(result);
   }
 
   handlePagination(event: PageEvent) {
@@ -119,7 +103,9 @@ export class TornillosPageComponent {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
+          console.log(result);
           this.displayedColumns = result;
+          this.setTornillosTableHeader(result);
         }
       });
   }

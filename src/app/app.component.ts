@@ -8,6 +8,9 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from './config/spanish-translation-angular-material';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { iTableHeaderAndVariable } from './interfaces/iTableHeaderAndVariable';
+import { TornillosTableHeaderDB } from './db/tornillos-table-header.db';
+import { TornillosTableHeaderService } from './services/tornillos-table-header.service';
 
 registerLocaleData(localeEs, 'es');
 
@@ -24,9 +27,19 @@ registerLocaleData(localeEs, 'es');
 export class AppComponent {
   title = 'prueba_tecnica_mercadona';
 
-  constructor(private loginSE: LoginService) {}
+  constructor(
+    private loginSE: LoginService,
+    private tornillosTableHeaderSE: TornillosTableHeaderService
+  ) {}
 
   ngOnInit() {
+    this.manageLogin();
+    this.manageColumns();
+  }
+
+  // Login management
+
+  manageLogin() {
     // We check if the user is logged in
     const loginInformation: iLoginInformation = this.checkLoginInformation();
 
@@ -50,5 +63,19 @@ export class AppComponent {
 
     // We return the login information
     return loginInformation;
+  }
+
+  // Columns management
+
+  manageColumns() {
+    const columns: string | null = localStorage.getItem('tornillos_columns');
+    if (columns) {
+      const parsedColumns: iTableHeaderAndVariable[] = JSON.parse(columns);
+      console.log(parsedColumns);
+      this.tornillosTableHeaderSE.setTornillosTableHeader(parsedColumns);
+    } else {
+      const columns = this.tornillosTableHeaderSE.getTornillosTableHeader();
+      localStorage.setItem('tornillos_columns', JSON.stringify(columns));
+    }
   }
 }
