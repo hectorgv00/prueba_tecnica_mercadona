@@ -11,6 +11,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { TornillosService } from '../../services/tornillos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShuffleColumnsModalComponent } from '../../modal/shuffle-columns-modal/shuffle-columns-modal.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tornillos-page',
@@ -77,6 +78,9 @@ export class TornillosPageComponent {
   pageIndex: number = 0;
   pageSize: number = 5;
 
+  // subscription
+  shuffleColumnsModalSubscription: Subscription | null = null;
+
   constructor(
     private tornillosSE: TornillosService,
     private dialog: MatDialog
@@ -107,8 +111,21 @@ export class TornillosPageComponent {
   }
 
   openShuffleColumnsModal() {
-    this.dialog.open(ShuffleColumnsModalComponent, {
+    const shuffleColumnsModal = this.dialog.open(ShuffleColumnsModalComponent, {
       data: { columns: this.displayedColumns },
     });
+
+    this.shuffleColumnsModalSubscription = shuffleColumnsModal
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.displayedColumns = result;
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.shuffleColumnsModalSubscription)
+      this.shuffleColumnsModalSubscription.unsubscribe();
   }
 }
