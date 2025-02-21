@@ -4,7 +4,7 @@ import { HomeComponent } from './home.component';
 import { TornillosService } from '../../services/tornillos.service';
 import { LoginModalService } from '../../services/loginModal.service';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../services/login/login.service';
 import { Subject } from 'rxjs';
 
 describe('HomeComponent', () => {

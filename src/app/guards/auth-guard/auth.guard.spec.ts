@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 
 import { authGuard } from './auth.guard';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../services/login/login.service';
 
 describe('authGuardGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) =>

@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
-import { iLoginInformation } from '../interfaces/iLoginInformation';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { iLoginInformation } from '../../interfaces/iLoginInformation';
 @Injectable({
   providedIn: 'root',
 })

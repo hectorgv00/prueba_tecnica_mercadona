@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from '../../components/button/button.component';
 import { TornillosService } from '../../services/tornillos.service';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../services/login/login.service';
 import { LoginModalService } from '../../services/loginModal.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
