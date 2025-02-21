@@ -1,21 +1,18 @@
-@if(isDataLoaded){
+@if(extraClass.isDataLoaded){
 
 <div id="tornillos-page">
   <div class="config-line">
     <mat-icon (click)="openShuffleColumnsModal()">settings</mat-icon>
   </div>
   <app-table
-    [dataSource]="dataSource"
-    [displayedColumns]="displayedColumns"
-    [paginatorOptions]="paginatorOptions"
+    [dataSource]="extraClass.dataSource"
+    [displayedColumns]="extraClass.displayedColumns"
+    [paginatorOptions]="extraClass.paginatorOptions"
     [deleteAction]="deleteTornillo.bind(this)"
   ></app-table>
 
   <footer>
-    <app-button
-      (click)="openNewTornilloModal()"
-      [buttonOptions]="addProductButtonOptions"
-    >
+    <app-button [buttonOptions]="extraClass.addProductButtonOptions">
     </app-button>
   </footer>
 </div>
