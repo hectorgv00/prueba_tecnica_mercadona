@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ButtonComponent } from '../../components/button/button.component';
 import { TornillosService } from '../../services/tornillos.service';
 import { LoginService } from '../../services/login/login.service';
-import { LoginModalService } from '../../services/loginModal.service';
+import { LoginModalService } from '../../services/login-modal/loginModal.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { HomeExtraClass } from './home-extra-class';

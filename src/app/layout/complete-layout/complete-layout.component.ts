@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { ButtonComponent } from '../../components/button/button.component';
 import { iLoginInformation } from '../../interfaces/iLoginInformation';
-import { LoginModalService } from '../../services/loginModal.service';
+import { LoginModalService } from '../../services/login-modal/loginModal.service';
 import { Subject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { CompleteLayoutExtraClass } from './complete-layout-extra-class';
