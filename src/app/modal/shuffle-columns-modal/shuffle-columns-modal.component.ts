@@ -9,7 +9,7 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
-import { UsefulService } from '../../services/useful.service';
+import { UsefulService } from '../../services/useful/useful.service';
 import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { ShuffleColumnsModalExtraClass } from './shuffle-columns-modal-extra-class';
 

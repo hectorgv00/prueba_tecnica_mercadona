@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { iTableHeaderAndVariable } from '../interfaces/iTableHeaderAndVariable';
+import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
 
 @Injectable({
   providedIn: 'root',

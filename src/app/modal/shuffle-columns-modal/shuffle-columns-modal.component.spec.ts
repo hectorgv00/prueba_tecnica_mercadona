@@ -13,7 +13,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { UsefulService } from '../../services/useful.service';
 
 describe('ShuffleColumnsModalComponent', () => {
   let component: ShuffleColumnsModalComponent;
