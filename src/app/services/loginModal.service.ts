@@ -1,9 +1,9 @@
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, Subscription, takeUntil } from 'rxjs';
-import { LoginService } from './login.service';
 import { LoginModalComponent } from '../modal/login-modal/login-modal.component';
 import { iLoginInformation } from '../interfaces/iLoginInformation';
 import { Injectable } from '@angular/core';
+import { LoginService } from './login/login.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,6 @@
 import { Component, LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CompleteLayoutComponent } from './layout/complete-layout/complete-layout.component';
-import { LoginService } from './services/login.service';
 import { iLoginInformation } from './interfaces/iLoginInformation';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -13,6 +12,7 @@ import { TornillosTableHeaderDB } from './db/tornillos-table-header.db';
 import { TornillosTableHeaderService } from './services/tornillos-table-header.service';
 import { iTornillos } from './interfaces/iTornillos';
 import { TornillosService } from './services/tornillos.service';
+import { LoginService } from './services/login/login.service';
 
 registerLocaleData(localeEs, 'es');
 
