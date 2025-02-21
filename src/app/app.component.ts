@@ -11,7 +11,7 @@ import { iTableHeaderAndVariable } from './interfaces/iTableHeaderAndVariable';
 import { TornillosTableHeaderDB } from './db/tornillos-table-header.db';
 import { TornillosTableHeaderService } from './services/tornillos-table-handler/tornillos-table-header.service';
 import { iTornillos } from './interfaces/iTornillos';
-import { TornillosService } from './services/tornillos.service';
+import { TornillosService } from './services/tornillos/tornillos.service';
 import { LoginService } from './services/login/login.service';
 
 registerLocaleData(localeEs, 'es');

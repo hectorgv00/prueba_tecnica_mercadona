@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ButtonComponent } from '../../components/button/button.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { TornillosService } from '../../services/tornillos.service';
+import { TornillosService } from '../../services/tornillos/tornillos.service';
 import { NewTornilloModalExtraClass } from './new-tornillo-modal-extra-class';
 
 @Component({

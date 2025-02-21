@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TornillosDB } from '../db/tornillos.db';
-import { iTornillos } from '../interfaces/iTornillos';
+import { TornillosDB } from '../../db/tornillos.db';
+import { iTornillos } from '../../interfaces/iTornillos';
 @Injectable({
   providedIn: 'root',
 })

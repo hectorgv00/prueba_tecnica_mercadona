@@ -5,7 +5,7 @@ import {
   tick,
 } from '@angular/core/testing';
 import { TornillosPageComponent } from './tornillos-page.component';
-import { TornillosService } from '../../services/tornillos.service';
+import { TornillosService } from '../../services/tornillos/tornillos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TornillosTableHeaderService } from '../../services/tornillos-table-handler/tornillos-table-header.service';
 import { confirmationModalService } from '../../services/confirmation-modal/confirmation-modal.service';

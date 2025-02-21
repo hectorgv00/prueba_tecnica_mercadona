@@ -5,7 +5,7 @@ import { TableComponent } from '../../components/table/table.component';
 import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
 import { ButtonComponent } from '../../components/button/button.component';
 import { PageEvent } from '@angular/material/paginator';
-import { TornillosService } from '../../services/tornillos.service';
+import { TornillosService } from '../../services/tornillos/tornillos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShuffleColumnsModalComponent } from '../../modal/shuffle-columns-modal/shuffle-columns-modal.component';
 import { Subject } from 'rxjs';
