@@ -10,10 +10,10 @@
       <p>Mercadona</p>
     </div>
 
-    @if(isLogged){
-    <app-button [buttonOptions]="buttonOptionsLogout"></app-button>
+    @if(extraClass.isLogged){
+    <app-button [buttonOptions]="extraClass.buttonOptionsLogout"></app-button>
     }@else {
-    <app-button [buttonOptions]="buttonOptionsLogin"></app-button>
+    <app-button [buttonOptions]="extraClass.buttonOptionsLogin"></app-button>
     }
   </header>
   <ng-content></ng-content>
