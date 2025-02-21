@@ -1,4 +1,4 @@
-#home-component {
+.home {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -8,19 +8,13 @@
   min-height: calc(100dvh - 73px);
   height: 100%;
 
-  .title {
-    font-size: 2rem;
-    font-weight: var(--bold);
-    color: var(--typografy-color);
-  }
-
-  .content-container {
+  &__content-container {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    .content {
+    &--content {
       padding: 1rem;
       background-color: var(--quintenary-color);
       display: flex;
@@ -28,23 +22,29 @@
       gap: 1rem;
       min-width: 400px;
 
-      .content-title {
+      &--title {
         font-size: 1rem;
         font-weight: var(--semiBold);
         color: var(--typografy-color);
       }
 
-      .content-text {
+      &--text {
         font-size: 0.8rem;
         font-weight: var(--regular);
         color: var(--label-typografy-color);
       }
 
-      .button-line {
+      &--button-line {
         display: flex;
         align-items: center;
         justify-content: center;
       }
     }
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: var(--bold);
+    color: var(--typografy-color);
   }
 }

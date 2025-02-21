@@ -1,10 +1,12 @@
-<div id="home-component">
-  <p class="title">Bienvenido</p>
-  <div class="content-container">
-    <div class="content">
-      <p class="content-title">Tornillos</p>
-      <p class="content-text">{{ extraClass.tornilloCount }} por revisar</p>
-      <div class="button-line">
+<div class="home">
+  <p class="home__title">Bienvenido</p>
+  <div class="home__content-container">
+    <div class="home__content-container--content">
+      <p class="home__content-container--content--title">Tornillos</p>
+      <p class="home__content-container--content--text">
+        {{ extraClass.tornilloCount }} por revisar
+      </p>
+      <div class="home__content-container--content--button-line">
         <app-button
           [buttonOptions]="extraClass.revisarButtonOptions"
         ></app-button>

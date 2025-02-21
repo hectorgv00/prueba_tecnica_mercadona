@@ -58,7 +58,7 @@
   min-height: 2rem;
   border-bottom: 1px solid var(--quintenary-color);
 
-  .index-block {
+  &__index {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,51 +68,58 @@
     aspect-ratio: 1;
   }
 
-  .content-block {
+  &__content {
     display: flex;
     gap: 1rem;
     align-items: center;
+  }
 
-    .handle {
-      color: var(--label-typografy-color);
+  &__handle {
+    color: var(--label-typografy-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+
+    > mat-icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: grab;
-
-      > mat-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-      }
+      font-size: 1rem;
     }
 
-    .column-name {
-      color: var(--typografy-color);
-      font-weight: var(--semiBold);
-      width: 250px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    &--disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
     }
+  }
 
-    .keep,
-    .see {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  &__name {
+    color: var(--typografy-color);
+    font-weight: var(--semiBold);
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-      .icon {
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 1.3rem;
-        width: 1.3rem;
-        aspect-ratio: 1;
-        &:hover {
-          transform: scale(1.05);
-          filter: brightness(1.2);
-        }
+  &__pin,
+  &__visibility {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .row__pin-icon,
+    .row__visibility-icon {
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1.3rem;
+      width: 1.3rem;
+      aspect-ratio: 1;
+
+      &:hover {
+        transform: scale(1.05);
+        filter: brightness(1.2);
       }
     }
   }
