@@ -8,6 +8,7 @@ import {
 } from '@angular/material/dialog';
 import { ButtonComponent } from '../../components/button/button.component';
 import { iConfirmationModalContent } from '../../interfaces/iConfirmationModalContent';
+import { ConfirmationModalExtraClass } from './confirmation-modal-extra-class';
 
 describe('ConfirmationModalComponent', () => {
   let component: ConfirmationModalComponent;
@@ -31,6 +32,10 @@ describe('ConfirmationModalComponent', () => {
 
     fixture = TestBed.createComponent(ConfirmationModalComponent);
     component = fixture.componentInstance;
+    component.extraClass = new ConfirmationModalExtraClass(
+      component.onCloseButtonClick.bind(component),
+      component.onActionButtonClick.bind(component)
+    );
     dialogRefSpy = TestBed.inject(MatDialogRef) as jasmine.SpyObj<
       MatDialogRef<ConfirmationModalComponent>
     >;
@@ -49,16 +54,16 @@ describe('ConfirmationModalComponent', () => {
   });
 
   it('should call dialogRef.close with false when cancelButtonOptions.onClick is called', () => {
-    component.cancelButtonOptions.onClick();
+    component.extraClass.cancelButtonOptions.onClick();
     expect(dialogRefSpy.close).toHaveBeenCalledWith(false);
   });
 
   it('should call dialogRef.close with true when deleteButtonOptions.onClick is called', () => {
-    component.deleteButtonOptions.onClick();
+    component.extraClass.deleteButtonOptions.onClick();
     expect(dialogRefSpy.close).toHaveBeenCalledWith(true);
   });
 
   it('should set the delete button text to the action from the dialog data', () => {
-    expect(component.deleteButtonOptions.text).toBe('Eliminar');
+    expect(component.extraClass.deleteButtonOptions.text).toBe('Eliminar');
   });
 });
