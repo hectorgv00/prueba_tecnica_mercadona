@@ -79,8 +79,6 @@ describe('CompleteLayoutComponent', () => {
     fixture.detectChanges();
 
     const logoutButton = fixture.debugElement.query(By.css('app-button'));
-    console.log('Estoy aquí');
-    console.log(logoutButton.componentInstance.buttonOptions); // Verifica las propiedades
 
     expect(logoutButton).toBeTruthy();
     expect(logoutButton.componentInstance.buttonOptions.icon).toBe('logout');

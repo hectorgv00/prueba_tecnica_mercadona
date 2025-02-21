@@ -69,7 +69,6 @@ export class NewTornilloModalComponent {
     const currentValue =
       this.extraClass.newTornilloForm.controls['precio'].value;
     const valueToSet = Math.round((currentValue + 0.1) * 10) / 10;
-    console.log(valueToSet);
     this.extraClass.newTornilloForm.controls['precio'].setValue(valueToSet);
   }
 

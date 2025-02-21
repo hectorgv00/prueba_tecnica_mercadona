@@ -74,7 +74,6 @@ export class AppComponent {
     const columns: string | null = localStorage.getItem('tornillos_columns');
     if (columns) {
       const parsedColumns: iTableHeaderAndVariable[] = JSON.parse(columns);
-      console.log(parsedColumns);
       this.tornillosTableHeaderSE.setTornillosTableHeader(parsedColumns);
     } else {
       const columns = this.tornillosTableHeaderSE.getTornillosTableHeader();

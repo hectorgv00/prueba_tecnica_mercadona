@@ -191,6 +191,5 @@ const getDisplayedCoumsId = (component: TableComponent): string[] => {
     .filter((column) => column.visible)
     .map((column) => column.variable);
   displayedColumnsId.push('actions');
-  console.log(component.displayedColumnIds);
   return displayedColumnsId;
 };

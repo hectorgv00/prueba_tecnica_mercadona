@@ -23,7 +23,6 @@ describe('ShuffleColumnsModalComponent', () => {
     const dialogRefSpyObj = jasmine.createSpyObj('MatDialogRef', ['close']);
     const dialogData: { columns: iTableHeaderAndVariable[] } = dialogColumns();
 
-    console.log(dialogData);
     await TestBed.configureTestingModule({
       imports: [
         ShuffleColumnsModalComponent,
