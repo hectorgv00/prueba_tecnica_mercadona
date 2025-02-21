@@ -1,7 +1,7 @@
 <div id="login-modal">
   <p mat-dialog-title>Inicia sesión</p>
   <mat-dialog-content>
-    <form (ngSubmit)="submitForm()" [formGroup]="loginForm">
+    <form (ngSubmit)="submitForm()" [formGroup]="extraClass.loginForm">
       <div class="label-and-input">
         <label for="username">Usuario</label>
         <mat-form-field appearance="outline">
@@ -10,8 +10,8 @@
       </div>
     </form>
     <div class="button-line">
-      <app-button [buttonOptions]="cancelButtonOptions"></app-button>
-      <app-button [buttonOptions]="submitButtonOptions"></app-button>
+      <app-button [buttonOptions]="extraClass.cancelButtonOptions"></app-button>
+      <app-button [buttonOptions]="extraClass.submitButtonOptions"></app-button>
     </div>
   </mat-dialog-content>
 </div>

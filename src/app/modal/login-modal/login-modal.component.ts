@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ButtonComponent } from '../../components/button/button.component';
 import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { Subscription } from 'rxjs';
+import { LoginModalExtraClass } from './login-modal-extra-class';
 
 @Component({
   selector: 'app-login-modal',
@@ -29,26 +30,10 @@ import { Subscription } from 'rxjs';
   styleUrl: './login-modal.component.scss',
 })
 export class LoginModalComponent {
-  loginForm: FormGroup = new FormGroup({
-    username: new FormControl('', Validators.required),
-  });
-
-  cancelButtonOptions: iButtonOptions = {
-    class: 'secondary',
-    text: 'cerrar',
-    disabled: false,
-    onClick: () => this.dialogRef.close(false),
-  };
-
-  submitButtonOptions: iButtonOptions = {
-    class: 'primary',
-    text: 'Iniciar sesión',
-    disabled: true,
-    onClick: () => this.submitForm(),
-  };
-
-  // subscribe
-  loginFormSubscription: Subscription | null = null;
+  extraClass: LoginModalExtraClass = new LoginModalExtraClass(
+    this.submitForm.bind(this),
+    this.onCancelButtonClick.bind(this)
+  );
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -60,20 +45,24 @@ export class LoginModalComponent {
   }
 
   submitForm() {
-    if (this.loginForm.valid) {
-      this.dialogRef.close(this.loginForm.value);
+    if (this.extraClass.loginForm.valid) {
+      this.dialogRef.close(this.extraClass.loginForm.value);
     }
   }
 
   suscribeToForm() {
-    this.loginFormSubscription = this.loginForm.statusChanges.subscribe(
-      (status) => {
-        this.submitButtonOptions.disabled = status !== 'VALID';
-      }
-    );
+    this.extraClass.loginFormSubscription =
+      this.extraClass.loginForm.statusChanges.subscribe((status) => {
+        this.extraClass.submitButtonOptions.disabled = status !== 'VALID';
+      });
+  }
+
+  onCancelButtonClick() {
+    this.dialogRef.close(false);
   }
 
   ngOnDestroy(): void {
-    if (this.loginFormSubscription) this.loginFormSubscription.unsubscribe();
+    if (this.extraClass.loginFormSubscription)
+      this.extraClass.loginFormSubscription.unsubscribe();
   }
 }
