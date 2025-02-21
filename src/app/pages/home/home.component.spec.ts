@@ -5,7 +5,6 @@ import { TornillosService } from '../../services/tornillos/tornillos.service';
 import { LoginModalService } from '../../services/login-modal/loginModal.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
-import { Subject } from 'rxjs';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;

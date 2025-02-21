@@ -3,7 +3,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { ButtonComponent } from '../../components/button/button.component';
 import { iLoginInformation } from '../../interfaces/iLoginInformation';
 import { LoginModalService } from '../../services/login-modal/loginModal.service';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { CompleteLayoutExtraClass } from './complete-layout-extra-class';
 import { LoginService } from '../../services/login/login.service';

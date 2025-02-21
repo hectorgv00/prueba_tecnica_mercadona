@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { LoginService } from './login.service';
 import { iLoginInformation } from '../../interfaces/iLoginInformation';
 

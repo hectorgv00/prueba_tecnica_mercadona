@@ -5,7 +5,6 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { ButtonComponent } from '../../components/button/button.component';
-import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { iConfirmationModalContent } from '../../interfaces/iConfirmationModalContent';
 import { ConfirmationModalExtraClass } from './confirmation-modal-extra-class';
 

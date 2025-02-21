@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
 import { MatIconModule } from '@angular/material/icon';
