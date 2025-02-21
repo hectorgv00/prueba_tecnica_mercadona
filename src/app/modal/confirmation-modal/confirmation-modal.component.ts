@@ -7,6 +7,7 @@ import {
 import { ButtonComponent } from '../../components/button/button.component';
 import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { iConfirmationModalContent } from '../../interfaces/iConfirmationModalContent';
+import { ConfirmationModalExtraClass } from './confirmation-modal-extra-class';
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -15,19 +16,10 @@ import { iConfirmationModalContent } from '../../interfaces/iConfirmationModalCo
   styleUrl: './confirmation-modal.component.scss',
 })
 export class ConfirmationModalComponent {
-  cancelButtonOptions: iButtonOptions = {
-    class: 'no-background',
-    text: 'Cancelar',
-    disabled: false,
-    onClick: () => this.dialogRef.close(false),
-  };
-
-  deleteButtonOptions: iButtonOptions = {
-    class: 'tertiary',
-    text: 'Eliminar',
-    disabled: false,
-    onClick: () => this.dialogRef.close(true),
-  };
+  extraClass: ConfirmationModalExtraClass = new ConfirmationModalExtraClass(
+    this.onCloseButtonClick.bind(this),
+    this.onActionButtonClick.bind(this)
+  );
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: iConfirmationModalContent,
@@ -39,6 +31,14 @@ export class ConfirmationModalComponent {
   }
 
   setButtonsText(): void {
-    this.deleteButtonOptions.text = this.data.action;
+    this.extraClass.deleteButtonOptions.text = this.data.action;
+  }
+
+  onCloseButtonClick(): void {
+    this.dialogRef.close(false);
+  }
+
+  onActionButtonClick(): void {
+    this.dialogRef.close(true);
   }
 }
