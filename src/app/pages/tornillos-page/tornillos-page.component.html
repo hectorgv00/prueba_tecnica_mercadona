@@ -1,9 +1,11 @@
+<!-- If the extraClass.isDataLoaded is true, we will print the tornillos-page component. Otherwise, we will print the loader component. -->
 @if(extraClass.isDataLoaded){
 
 <div id="tornillos-page">
   <div class="config-line">
     <mat-icon (click)="openShuffleColumnsModal()">settings</mat-icon>
   </div>
+  <!-- We use the table component to print the table. We pass the dataSource, displayedColumns, paginatorOptions and the deleteAction function to the table component -->
   <app-table
     [dataSource]="extraClass.dataSource"
     [displayedColumns]="extraClass.displayedColumns"

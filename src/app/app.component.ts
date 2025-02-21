@@ -26,30 +26,57 @@ registerLocaleData(localeEs, 'es');
   ],
 })
 export class AppComponent {
-  title = 'prueba_tecnica_mercadona';
+  /**
+   * title
+   * @type {string}
+   * Title of the app
+   */
+  title = 'Prueba técnica Mercadona Héctor González Viejo';
 
+  /**
+   * Constructor
+   * @param loginSE
+   * @param tornillosTableHeaderSE
+   * @param tornillosSE
+   * This constructor is used to inject the services needed to handle the login, the columns and the tornillos
+   */
   constructor(
     private loginSE: LoginService,
     private tornillosTableHeaderSE: TornillosTableHeaderService,
     private tornillosSE: TornillosService
   ) {}
 
+  /**
+   * ngOnInit
+   * This function is used to initialize the component.
+   */
   ngOnInit() {
     this.manageLogin();
     this.manageColumns();
     this.manageTornillos();
   }
 
-  // Login management
-
+  /**
+   * manageLogin
+   * This function is used to manage the login status of the user
+   * It checks if the user is logged in and handles the login status
+   */
   manageLogin() {
     // We check if the user is logged in
     const loginInformation: iLoginInformation = this.checkLoginInformation();
 
-    // We handle the login status
+    // We send the information to the service to handle the login
     this.loginSE.handleLogin(loginInformation);
   }
 
+  /**
+   * checkLoginInformation
+   * @private
+   * @returns {iLoginInformation} loginInformation
+   * This function is used to check the login information of the user
+   * It checks if the user has a token and a username in the local storage
+   *
+   */
   private checkLoginInformation() {
     // We check if the user has a token and username in the local storage
     const token: string | null = localStorage.getItem('mercadona_token');
@@ -68,26 +95,40 @@ export class AppComponent {
     return loginInformation;
   }
 
-  // Columns management
-
+  /**
+   * manageColumns
+   * This function is used to manage the columns of the tornillos table
+   */
   manageColumns() {
+    // We get the columns from the local storage
     const columns: string | null = localStorage.getItem('tornillos_columns');
+
+    // If the columns are in the local storage, we parse them and set
     if (columns) {
       const parsedColumns: iTableHeaderAndVariable[] = JSON.parse(columns);
       this.tornillosTableHeaderSE.setTornillosTableHeader(parsedColumns);
+
+      // If the columns are not in the local storage, we get them from the service and set them
     } else {
       const columns = this.tornillosTableHeaderSE.getTornillosTableHeader();
       localStorage.setItem('tornillos_columns', JSON.stringify(columns));
     }
   }
 
-  // Tornillos management
-
+  /**
+   * manageTornillos
+   * This function is used to manage the tornillos
+   */
   manageTornillos() {
+    // We get the tornillos from the local storage
     const tornillos: string | null = localStorage.getItem('tornillos');
+
+    // If the tornillos are in the local storage, we parse them and set
     if (tornillos) {
       const parsedTornillos: iTornillos[] = JSON.parse(tornillos);
       this.tornillosSE.setTornillos(parsedTornillos);
+
+      // If the tornillos are not in the local storage, we get them from the service and set them
     } else {
       const tornillos = this.tornillosSE.getTornillos();
       localStorage.setItem('tornillos', JSON.stringify(tornillos));

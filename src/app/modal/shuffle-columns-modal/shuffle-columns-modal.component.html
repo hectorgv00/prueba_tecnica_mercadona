@@ -6,15 +6,18 @@
     <p class="subtitle">Reordenar, fijar u ocultar las columnas de la tabla</p>
     <p class="title">Configurar columnas</p>
 
+    <!-- We are using Angular Material's drag and drop element. The cdkDropList is applied in this div element, so it will be able to receive the cdkDrag elements. The onDrop method will send an event when an element has been dropped-->
     <div
       class="drag-and-drop-rows"
       cdkDropList
       (cdkDropListDropped)="onDrop($event)"
     >
+      <!-- We create a loop to print all the columns as rows, to be able to swift them. The row has the attribute cdkDrag, as it is an element that will be draggable -->
       @for(column of extraClass.sortedColumns; track $index){
       <span class="row" cdkDrag>
         <span class="index-block">{{ $index + 1 }}</span>
         <span class="content-block">
+          <!-- We have set the cdkDragHandle to this element. It will be the part of the element that will allow to drag it and drop it elsewere -->
           <span
             class="handle"
             [ngClass]="{ disabled: column.pinned }"
@@ -26,19 +29,26 @@
             {{ column.header }}
           </p>
 
+          <!-- Pin icon -->
           <span class="keep" (click)="swapProperty(column, 'pinned')">
+            <!-- If the element is pinned, we will display the pin icon -->
             @if(column.pinned){
             <img class="icon" src="/icons/pin.svg" alt="pin" />
 
+            <!-- Otherwise, we will print the pin_off icon -->
             } @else {
             <img class="icon" src="/icons/pin_off.svg" alt="pin" />
             }
           </span>
+
+          <!-- See icon -->
           <span class="see" (click)="swapProperty(column, 'visible')">
+            <!-- If the element is visible, we will display the visibility icon -->
             @if(column.visible){
             <mat-icon class="icon">visibility</mat-icon>
 
             }@else {
+            <!-- Otherwise, we will print the visibility_off icon -->
             <mat-icon class="icon">visibility_off</mat-icon>
 
             }

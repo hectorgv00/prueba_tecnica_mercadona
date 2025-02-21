@@ -9,14 +9,27 @@ import { LoginService } from '.././login/login.service';
   providedIn: 'root',
 })
 export class LoginModalService {
+  /**
+   * dialogSubscription
+   * @type {Subscription | null}
+   * This variable is used to store the subscription of the dialog to unsubscribe from the observable when the modal is closed
+   */
   private dialogSubscription: Subscription | null = null;
 
+  /**
+   * Constructor
+   * @param dialog
+   * @param loginSE
+   * This constructor is used to inject the dialog service to open the modal, and the service that handles the login
+   */
   constructor(private dialog: MatDialog, private loginSE: LoginService) {}
 
-  // Function that opens the login modal
+  /**
+   * openDialog
+   * @param {Subject<any>} subject
+   * This function is used to open the login modal using the dialog service
+   */
   openDialog(subject: Subject<any>): void {
-    // We create a subject to unsubscribe from the observable when the modal is closed
-
     // we store the reference of the dialog to get the information once is closed
     const dialog = this.dialog.open(LoginModalComponent);
 
@@ -44,6 +57,10 @@ export class LoginModalService {
       });
   }
 
+  /**
+   * ngOnDestroy
+   * This function is used to unsubscribe from the observable when the component is destroyed
+   */
   ngOnDestroy(): void {
     if (this.dialogSubscription) this.dialogSubscription.unsubscribe();
   }

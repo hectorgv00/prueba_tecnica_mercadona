@@ -6,7 +6,12 @@ import { tPinedElements } from '../../interfaces/tPinedElements';
   providedIn: 'root',
 })
 export class UsefulService {
-  // This method is used to reset the indexes of an array of objects
+  /**
+   * resetIndexes
+   * @param {any[]} array
+   * @returns {any[]}
+   * This method is used to reset the indexes of an array of objects.
+   */
   static resetIndexes(array: any[]) {
     return array.map((el, index) => {
       el.index = index;
@@ -14,7 +19,14 @@ export class UsefulService {
     });
   }
 
-  // This method is used to swap the elements of an array of objects
+  /**
+   * swapArrayElements
+   * @param {iTableHeaderAndVariable[]} arrayToSort
+   * @param {number} indexA
+   * @param {number} indexB
+   * @returns {iTableHeaderAndVariable[]}
+   * This method is used to swap the elements of an array of objects.
+   */
   static swapArrayElements(
     arrayToSort: iTableHeaderAndVariable[],
     indexA: number,
@@ -68,16 +80,25 @@ export class UsefulService {
       newArray[index] = newNonPinned[i];
     });
 
+    // We return the new array
     return newArray;
   }
 
-  // This method is used to separate the pinned elements from the non-pinned elements
+  /**
+   * separetePinnedAndNonPinnedElements
+   * @param {iTableHeaderAndVariable[]} arrayToSort
+   * @param {tPinedElements[]} pinnedElements
+   * @param {iTableHeaderAndVariable[]} nonPinnedElements
+   * @param {number[]} availableIndices
+   * This method is used to separate the pinned elements from the non-pinned elements
+   */
   private static separetePinnedAndNonPinnedElements(
     arrayToSort: iTableHeaderAndVariable[],
     pinnedElements: tPinedElements[],
     nonPinnedElements: iTableHeaderAndVariable[],
     availableIndices: number[]
   ) {
+    // We iterate over the array to sort
     arrayToSort.forEach((element: iTableHeaderAndVariable, index: number) => {
       // If the elment is pinned, it is sent to the pinnedElements array
       if (element.pinned) {
@@ -90,7 +111,14 @@ export class UsefulService {
     });
   }
 
-  // This method is used to get the sourceIndex in the nonPinnedElements array
+  /**
+   * getSourceIndex
+   * @param {iTableHeaderAndVariable[]} arrayToSort
+   * @param {number} indexA
+   * @param {iTableHeaderAndVariable[]} nonPinnedElements
+   * @returns {number}
+   * This method is used to get the sourceIndex in the nonPinnedElements array
+   */
   private static getSourceIndex(
     arrayToSort: iTableHeaderAndVariable[],
     indexA: number,
@@ -104,7 +132,13 @@ export class UsefulService {
     return sourceIndex;
   }
 
-  // This method is used to get the targetIndex in the nonPinnedElements array
+  /**
+   * getTargetIndexInNonPinned
+   * @param {number[]} availableIndices
+   * @param {number} indexB
+   * @returns {number}
+   * This method is used to get the targetIndex in the nonPinnedElements array
+   */
   private static getTargetIndexInNonPinned(
     availableIndices: number[],
     indexB: number
@@ -126,7 +160,7 @@ export class UsefulService {
 
     // If there are indexes before indexB
     if (indexesBeforeIndexB.length > 0) {
-      // We get the last index before B
+      // We get the last index before indexB
       const lastÏndexBEforeB =
         indexesBeforeIndexB[indexesBeforeIndexB.length - 1];
 

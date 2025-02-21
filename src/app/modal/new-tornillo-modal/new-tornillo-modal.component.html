@@ -4,25 +4,35 @@
   >
   <p mat-dialog-title>Nuevo producto</p>
   <mat-dialog-content>
+    <!-- We set the form -->
     <form (ngSubmit)="saveForm()" [formGroup]="extraClass.newTornilloForm">
+      <!-- As there was not button inside the form, I have setted a displayed none button inside to send the ngSubmit on enter pressed -->
       <button
         type="submit"
         [disabled]="extraClass.saveButtonOptions.disabled"
         style="display: none"
       ></button>
+
+      <!-- Used the form-line class to set the form lines -->
       <div class="form-line">
         <div class="label-and-input">
           <label for="nombre">Nombre</label>
+
+          <!-- Outlined input from Angular Material -->
           <mat-form-field appearance="outline">
             <input name="nombre" matInput formControlName="nombre" />
           </mat-form-field>
         </div>
       </div>
 
+      <!-- form-line is double, meaning that two elements will fit in the same line -->
       <div class="form-line double">
         <div class="label-and-input">
           <label for="precio">Precio</label>
+
+          <!-- This input uses the matInput, but it is custom, as it contains the - an + buttons to add and remove price -->
           <mat-form-field appearance="outline">
+            <!-- The remove icon will call the remove function to remove price  -->
             <span (click)="removePrice()" class="sum-or-minus-button"
               ><mat-icon>remove</mat-icon></span
             >
@@ -34,6 +44,8 @@
               formControlName="precio"
               (input)="checkPrice($event)"
             />
+
+            <!-- the add icon will call addPrice to sum price -->
             <span (click)="addPrice()" class="sum-or-minus-button"
               ><mat-icon>add</mat-icon></span
             >
@@ -43,11 +55,13 @@
         <div class="label-and-input">
           <label for="formato">Formato</label>
           <mat-form-field appearance="outline">
+            <!-- We ise tje material select -->
             <mat-select
               placeholder="Selecciona un valor"
               formControlName="formato"
               name="formato"
             >
+              <!-- We use the for loop to print all the formats -->
               @for (format of extraClass.formats; track format) {
               <mat-option [value]="format">{{ format }}</mat-option>
               }
