@@ -11,5 +11,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
+  /***
+   * @Input buttonOptions: iButtonOptions
+   * @type {iButtonOptions}
+   * Input to receive the options to be displayed in the button.
+   */
   @Input({ required: true }) buttonOptions!: iButtonOptions;
 }

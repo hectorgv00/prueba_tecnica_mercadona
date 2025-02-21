@@ -1,6 +1,8 @@
+<!-- Layout of the full webApp, it will only render once, as it encapsulates all the other components. -->
 <main id="complete-layout">
   <header>
     <div class="logo-and-text" (click)="goToHome()">
+      <!-- We aare using Angular's ngSrc directive to set the image source, and we are using the alt attribute to set the image's alt text. -->
       <img
         ngSrc="/images/logoMercadona.webp"
         width="32"
@@ -10,11 +12,16 @@
       <p>Mercadona</p>
     </div>
 
+    <!-- If the user is logged, we display the logout button -->
     @if(extraClass.isLogged){
     <app-button [buttonOptions]="extraClass.buttonOptionsLogout"></app-button>
     }@else {
+
+    <!-- If the user is not logged, we display the login button -->
     <app-button [buttonOptions]="extraClass.buttonOptionsLogin"></app-button>
     }
   </header>
+
+  <!-- We are using Angular's ng-content tag to render the content that will be inside the complete-layout tag. -->
   <ng-content></ng-content>
 </main>

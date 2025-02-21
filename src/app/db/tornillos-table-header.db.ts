@@ -5,6 +5,12 @@ import { iTableHeaderAndVariable } from '../interfaces/iTableHeaderAndVariable';
   providedIn: 'root',
 })
 export class TornillosTableHeaderDB {
+  /**
+   * tornillosTableHeaderDB
+   * @private
+   * @type {iTableHeaderAndVariable[]}
+   * This variable is used to store the table header of the tornillos table as it was a database.
+   */
   private tornillosTableHeaderDB: iTableHeaderAndVariable[] = [
     {
       header: 'Nombre',
@@ -36,10 +42,20 @@ export class TornillosTableHeaderDB {
     },
   ];
 
+  /**
+   * getTornillosTableHeader
+   * @returns {iTableHeaderAndVariable[]}
+   * This method is used to get the table header of the tornillos table.
+   */
   getTornillosTableHeader(): iTableHeaderAndVariable[] {
     return this.tornillosTableHeaderDB;
   }
 
+  /**
+   * setTornillosTableHeader
+   * @param {iTableHeaderAndVariable[]} tornillosTableHeader
+   * This method is used to set the table header of the tornillos table.
+   */
   setTornillosTableHeader(tornillosTableHeader: iTableHeaderAndVariable[]) {
     this.tornillosTableHeaderDB = tornillosTableHeader;
   }

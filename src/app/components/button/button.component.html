@@ -1,3 +1,4 @@
+<!-- Button element. Contains a mat-button to make it a button from Angular Material, and all the inputs come from the parent through the buttonOptions object. -->
 <button
   mat-button
   [class]="buttonOptions.class"
@@ -10,6 +11,7 @@
     {{ buttonOptions.text }}
   </p>
 
+  <!-- If the buttonOptions object has an icon, a mat-icon will be printed with the icon name -->
   @if(buttonOptions.icon){
   <mat-icon> {{ buttonOptions.icon }} </mat-icon>
   }

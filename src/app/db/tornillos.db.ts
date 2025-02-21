@@ -1,6 +1,12 @@
 import { iTornillos } from '../interfaces/iTornillos';
 
 export class TornillosDB {
+  /***
+   * tornillosDB
+   * @private
+   * @type {iTornillos[]}
+   * This variable is used to store the tornillos as it was a database.
+   */
   private static tornillosDB: iTornillos[] = [
     {
       id: 1,
@@ -376,11 +382,21 @@ export class TornillosDB {
     },
   ];
 
-  public static getTornillos(): iTornillos[] {
+  /**
+   * getTornillos
+   * @returns {iTornillos[]}
+   * This method is used to get the tornillos.
+   */
+  static getTornillos(): iTornillos[] {
     return this.tornillosDB;
   }
 
-  public static setTornillos(tornillos: iTornillos[]): void {
+  /**
+   * setTornillos
+   * @param {iTornillos[]} tornillos
+   * This method is used to set the tornillos.
+   */
+  static setTornillos(tornillos: iTornillos[]): void {
     this.tornillosDB = tornillos;
   }
 }
