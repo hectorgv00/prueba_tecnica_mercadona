@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { TornillosService } from '../../services/tornillos.service';
-import { LoginModalService } from '../../services/loginModal.service';
+import { LoginModalService } from '../../services/login-modal/loginModal.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
 import { Subject } from 'rxjs';
