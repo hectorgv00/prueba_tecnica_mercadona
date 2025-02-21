@@ -4,10 +4,10 @@
   >
   <p mat-dialog-title>Nuevo producto</p>
   <mat-dialog-content>
-    <form (ngSubmit)="saveForm()" [formGroup]="newTornilloForm">
+    <form (ngSubmit)="saveForm()" [formGroup]="extraClass.newTornilloForm">
       <button
         type="submit"
-        [disabled]="saveButtonOptions.disabled"
+        [disabled]="extraClass.saveButtonOptions.disabled"
         style="display: none"
       ></button>
       <div class="form-line">
@@ -48,7 +48,7 @@
               formControlName="formato"
               name="formato"
             >
-              @for (format of formats; track format) {
+              @for (format of extraClass.formats; track format) {
               <mat-option [value]="format">{{ format }}</mat-option>
               }
             </mat-select>
@@ -68,8 +68,8 @@
   </mat-dialog-content>
   <mat-dialog-actions>
     <div class="button-line">
-      <app-button [buttonOptions]="cancelButtonOptions"></app-button>
-      <app-button [buttonOptions]="saveButtonOptions"></app-button>
+      <app-button [buttonOptions]="extraClass.cancelButtonOptions"></app-button>
+      <app-button [buttonOptions]="extraClass.saveButtonOptions"></app-button>
     </div>
   </mat-dialog-actions>
 </div>

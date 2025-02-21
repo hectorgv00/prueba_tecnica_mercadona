@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { Subscription } from 'rxjs';
 import { TornillosService } from '../../services/tornillos.service';
+import { NewTornilloModalExtraClass } from './new-tornillo-modal-extra-class';
 
 @Component({
   selector: 'app-new-tornillo-modal',
@@ -34,35 +35,10 @@ import { TornillosService } from '../../services/tornillos.service';
   styleUrl: './new-tornillo-modal.component.scss',
 })
 export class NewTornilloModalComponent {
-  newTornilloForm: FormGroup = new FormGroup({
-    nombre: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(50),
-    ]),
-    precio: new FormControl(0, [Validators.required, Validators.min(0)]),
-    formato: new FormControl('', Validators.required),
-    marca: new FormControl('', Validators.required),
-  });
-
-  cancelButtonOptions: iButtonOptions = {
-    class: 'secondary',
-    text: 'Cancelar',
-    disabled: false,
-    onClick: () => this.closePopup(),
-  };
-
-  saveButtonOptions: iButtonOptions = {
-    class: 'primary',
-    text: 'Guardar',
-    disabled: true,
-    onClick: () => this.saveForm(),
-    type: 'submit',
-  };
-
-  // subscribe
-  newTornilloFormSubscription: Subscription | null = null;
-
-  formats: string[] = [];
+  extraClass: NewTornilloModalExtraClass = new NewTornilloModalExtraClass(
+    this.closePopup.bind(this),
+    this.saveForm.bind(this)
+  );
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -80,43 +56,45 @@ export class NewTornilloModalComponent {
   }
 
   saveForm(): void {
-    this.dialogRef.close(this.newTornilloForm.value);
+    this.dialogRef.close(this.extraClass.newTornilloForm.value);
   }
 
   removePrice(): void {
-    const currentValue = this.newTornilloForm.controls['precio'].value;
+    const currentValue =
+      this.extraClass.newTornilloForm.controls['precio'].value;
     const valueToSet = Math.round((currentValue - 0.1) * 10) / 10;
 
     if (currentValue <= 0) {
-      this.newTornilloForm.controls['precio'].setValue(0);
+      this.extraClass.newTornilloForm.controls['precio'].setValue(0);
       return;
     }
 
-    this.newTornilloForm.controls['precio'].setValue(valueToSet);
+    this.extraClass.newTornilloForm.controls['precio'].setValue(valueToSet);
   }
 
   addPrice(): void {
-    const currentValue = this.newTornilloForm.controls['precio'].value;
+    const currentValue =
+      this.extraClass.newTornilloForm.controls['precio'].value;
     const valueToSet = Math.round((currentValue + 0.1) * 10) / 10;
     console.log(valueToSet);
-    this.newTornilloForm.controls['precio'].setValue(valueToSet);
+    this.extraClass.newTornilloForm.controls['precio'].setValue(valueToSet);
   }
 
   suscribeToForm() {
-    this.newTornilloFormSubscription =
-      this.newTornilloForm.statusChanges.subscribe((status) => {
-        this.saveButtonOptions.disabled = status !== 'VALID';
+    this.extraClass.newTornilloFormSubscription =
+      this.extraClass.newTornilloForm.statusChanges.subscribe((status) => {
+        this.extraClass.saveButtonOptions.disabled = status !== 'VALID';
       });
   }
 
   checkPrice(event: Event): void {
-    const value = this.newTornilloForm.controls['precio'].value;
+    const value = this.extraClass.newTornilloForm.controls['precio'].value;
     if (value < 0) {
-      this.newTornilloForm.controls['precio'].setValue(0);
+      this.extraClass.newTornilloForm.controls['precio'].setValue(0);
     }
   }
 
   getFormats(): void {
-    this.formats = this.tornillosSE.getFormatosUnique();
+    this.extraClass.formats = this.tornillosSE.getFormatosUnique();
   }
 }
