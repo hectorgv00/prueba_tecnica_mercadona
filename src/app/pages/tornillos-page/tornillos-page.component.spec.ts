@@ -1,7 +1,6 @@
 import {
   ComponentFixture,
   fakeAsync,
-  flushMicrotasks,
   TestBed,
   tick,
 } from '@angular/core/testing';
@@ -11,7 +10,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { TornillosTableHeaderService } from '../../services/tornillos-table-header.service';
 import { confirmationModalService } from '../../services/confirmation-modal.service';
 import { of, Subject } from 'rxjs';
-import { By } from '@angular/platform-browser';
 
 describe('TornillosPageComponent', () => {
   let component: TornillosPageComponent;
