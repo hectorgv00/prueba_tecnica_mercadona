@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TornillosTableHeaderDB } from '../db/tornillos-table-header.db';
-import { iTableHeaderAndVariable } from '../interfaces/iTableHeaderAndVariable';
+import { TornillosTableHeaderDB } from '../../db/tornillos-table-header.db';
+import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
 
 @Injectable({
   providedIn: 'root',

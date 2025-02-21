@@ -9,7 +9,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { iTableHeaderAndVariable } from './interfaces/iTableHeaderAndVariable';
 import { TornillosTableHeaderDB } from './db/tornillos-table-header.db';
-import { TornillosTableHeaderService } from './services/tornillos-table-header.service';
+import { TornillosTableHeaderService } from './services/tornillos-table-handler/tornillos-table-header.service';
 import { iTornillos } from './interfaces/iTornillos';
 import { TornillosService } from './services/tornillos.service';
 import { LoginService } from './services/login/login.service';
