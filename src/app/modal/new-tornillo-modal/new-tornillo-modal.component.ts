@@ -1,10 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -13,10 +8,8 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ButtonComponent } from '../../components/button/button.component';
-import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { Subscription } from 'rxjs';
 import { TornillosService } from '../../services/tornillos.service';
 import { NewTornilloModalExtraClass } from './new-tornillo-modal-extra-class';
 
