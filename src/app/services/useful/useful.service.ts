@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
+import { tPinedElements } from '../../interfaces/tPinedElements';
 
 @Injectable({
   providedIn: 'root',
@@ -140,8 +141,3 @@ export class UsefulService {
     return targetIndexInNonPinned;
   }
 }
-
-type tPinedElements = {
-  index: number;
-  element: iTableHeaderAndVariable;
-};
