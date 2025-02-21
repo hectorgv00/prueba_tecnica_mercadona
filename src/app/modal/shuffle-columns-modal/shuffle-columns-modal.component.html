@@ -11,7 +11,7 @@
       cdkDropList
       (cdkDropListDropped)="onDrop($event)"
     >
-      @for(column of sortedColumns; track $index){
+      @for(column of extraClass.sortedColumns; track $index){
       <span class="row" cdkDrag>
         <span class="index-block">{{ $index + 1 }}</span>
         <span class="content-block">
@@ -50,8 +50,8 @@
   </mat-dialog-content>
   <mat-dialog-actions>
     <div class="button-line">
-      <app-button [buttonOptions]="cancelButtonOptions"></app-button>
-      <app-button [buttonOptions]="applyButtonOptions"></app-button>
+      <app-button [buttonOptions]="extraClass.cancelButtonOptions"></app-button>
+      <app-button [buttonOptions]="extraClass.applyButtonOptions"></app-button>
     </div>
   </mat-dialog-actions>
 </div>

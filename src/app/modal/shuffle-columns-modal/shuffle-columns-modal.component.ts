@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { iTableHeaderAndVariable } from '../../interfaces/iTableHeaderAndVariable';
 import { UsefulService } from '../../services/useful.service';
 import { iButtonOptions } from '../../interfaces/iButtonOptions';
+import { ShuffleColumnsModalExtraClass } from './shuffle-columns-modal-extra-class';
 
 @Component({
   selector: 'app-shuffle-columns-modal',
@@ -25,21 +26,10 @@ import { iButtonOptions } from '../../interfaces/iButtonOptions';
   styleUrl: './shuffle-columns-modal.component.scss',
 })
 export class ShuffleColumnsModalComponent {
-  cancelButtonOptions: iButtonOptions = {
-    class: 'no-background',
-    text: 'Cancelar',
-    disabled: false,
-    onClick: () => this.closePopup(),
-  };
-
-  applyButtonOptions: iButtonOptions = {
-    class: 'primary',
-    text: 'Aplicar',
-    disabled: false,
-    onClick: () => this.dialogRef.close(this.sortedColumns),
-  };
-
-  sortedColumns: iTableHeaderAndVariable[] = [];
+  extraClass: ShuffleColumnsModalExtraClass = new ShuffleColumnsModalExtraClass(
+    this.closePopup.bind(this),
+    this.submitSortedColumns.bind(this)
+  );
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -57,7 +47,7 @@ export class ShuffleColumnsModalComponent {
       }
     );
 
-    this.sortedColumns = sortedColumns;
+    this.extraClass.sortedColumns = sortedColumns;
   }
 
   onDrop(event: CdkDragDrop<any, any, any>) {
@@ -65,16 +55,21 @@ export class ShuffleColumnsModalComponent {
     const currentIndex = event.currentIndex;
 
     const swappedColumnsArray = UsefulService.swapArrayElements(
-      this.sortedColumns,
+      this.extraClass.sortedColumns,
       previousIndex,
       currentIndex
     );
 
-    this.sortedColumns = UsefulService.resetIndexes(swappedColumnsArray);
+    this.extraClass.sortedColumns =
+      UsefulService.resetIndexes(swappedColumnsArray);
   }
 
   swapProperty(element: iTableHeaderAndVariable, property: string): void {
     element[property] = !element[property];
+  }
+
+  submitSortedColumns(): void {
+    this.dialogRef.close(this.extraClass.sortedColumns);
   }
 
   closePopup(): void {
