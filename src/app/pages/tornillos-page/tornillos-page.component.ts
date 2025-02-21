@@ -11,7 +11,7 @@ import { ShuffleColumnsModalComponent } from '../../modal/shuffle-columns-modal/
 import { Subject } from 'rxjs';
 import { TornillosTableHeaderService } from '../../services/tornillos-table-header.service';
 import { NewTornilloModalComponent } from '../../modal/new-tornillo-modal/new-tornillo-modal.component';
-import { confirmationModalService } from '../../services/confirmation-modal.service';
+import { confirmationModalService } from '../../services/confirmation-modal/confirmation-modal.service';
 import { iConfirmationModalContent } from '../../interfaces/iConfirmationModalContent';
 import { TornillosPageExtraClass } from './tornillos-page-extra-class';
 

@@ -8,7 +8,7 @@ import { TornillosPageComponent } from './tornillos-page.component';
 import { TornillosService } from '../../services/tornillos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TornillosTableHeaderService } from '../../services/tornillos-table-header.service';
-import { confirmationModalService } from '../../services/confirmation-modal.service';
+import { confirmationModalService } from '../../services/confirmation-modal/confirmation-modal.service';
 import { of, Subject } from 'rxjs';
 
 describe('TornillosPageComponent', () => {

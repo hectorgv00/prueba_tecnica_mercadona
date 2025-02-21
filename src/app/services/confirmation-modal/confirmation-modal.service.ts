@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, Subscription, takeUntil } from 'rxjs';
-import { ConfirmationModalComponent } from '../modal/confirmation-modal/confirmation-modal.component';
-import { iConfirmationModalContent } from '../interfaces/iConfirmationModalContent';
+import { ConfirmationModalComponent } from '../../modal/confirmation-modal/confirmation-modal.component';
+import { iConfirmationModalContent } from '../../interfaces/iConfirmationModalContent';
 
 @Injectable({
   providedIn: 'root',
