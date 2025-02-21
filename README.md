@@ -10,7 +10,7 @@
   - [Instalación](#instalación)
   - [Servidor de desarrollo](#servidor-de-desarrollo)
   - [Tests](#tests)
-    - [Autor](#autor)
+  - [Autor](#autor)
 
 ---
 
@@ -92,6 +92,6 @@ Para ejecutar los tests unitarios, utiliza el siguiente comando:
 ng test
 ```
 
-### Autor
+## Autor
 
 - [Héctor González Viejo](https://www.linkedin.com/in/hector-gonzalez-viejo-/)
