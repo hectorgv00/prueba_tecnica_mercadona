@@ -47,6 +47,13 @@
       header-headline-weight: var(--semiBold),
     )
   );
+  @include mat.button-overrides(
+    (
+      text-hover-state-layer-opacity: 0,
+      text-focus-state-layer-opacity: 0,
+      text-pressed-state-layer-opacity: 0,
+    )
+  );
 }
 
 * {
