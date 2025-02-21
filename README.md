@@ -1,5 +1,7 @@
 # Prueba Tecnica Mercadona
 
+El repositorio donde se ha realizado es el siguiente: [Repositorio](https://github.com/hectorgv00/prueba_tecnica_mercadona) Ahi se pueden ver todos los commits realizados durante el desarrollo del proyecto.
+
 [Para ver el stio en producción, haz click aquí](https://pt-mercadona.hectorgv00.online/)
 
 ## Índice
