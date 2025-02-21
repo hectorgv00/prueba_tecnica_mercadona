@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from '../../components/button/button.component';
-import { iButtonOptions } from '../../interfaces/iButtonOptions';
 import { TornillosService } from '../../services/tornillos.service';
 import { LoginService } from '../../services/login.service';
-import { MatDialog } from '@angular/material/dialog';
 import { LoginModalService } from '../../services/loginModal.service';
 import { Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { HomeExtraClass } from './home-extra-class';
 
 @Component({
   selector: 'app-home',
@@ -16,18 +15,9 @@ import { Subject, Subscription } from 'rxjs';
   providers: [TornillosService, LoginModalService],
 })
 export class HomeComponent {
-  revisarButtonOptions: iButtonOptions = {
-    class: 'primary',
-    text: 'Revisar',
-    disabled: false,
-    onClick: () => this.onReviewClick(),
-    icon: 'visibility',
-  };
-
-  tornilloCount: number = 0;
-
-  // subscription
-  subjectSubscription: Subscription | null = null;
+  extraClass: HomeExtraClass = new HomeExtraClass(
+    this.onReviewClick.bind(this)
+  );
 
   constructor(
     private tornillosSE: TornillosService,
@@ -41,7 +31,7 @@ export class HomeComponent {
   }
 
   getTornillosCount(): void {
-    this.tornilloCount = this.tornillosSE.getTornillosCount();
+    this.extraClass.tornilloCount = this.tornillosSE.getTornillosCount();
   }
 
   onReviewClick(): void {
@@ -64,12 +54,13 @@ export class HomeComponent {
   handleLogin(): void {
     const subject = new Subject();
     this.loginModalSE.openDialog(subject);
-    this.subjectSubscription = subject.subscribe((value) => {
+    this.extraClass.subjectSubscription = subject.subscribe((value) => {
       if (value) this.goToTornillosPage();
     });
   }
 
   ngOnDestroy(): void {
-    if (this.subjectSubscription) this.subjectSubscription.unsubscribe();
+    if (this.extraClass.subjectSubscription)
+      this.extraClass.subjectSubscription.unsubscribe();
   }
 }
